@@ -96,12 +96,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   // TODO: Implémenter la logique de connexion
 
-                  // Naviguer vers la page du profil après la connexion
-                  //   Navigator.pushReplacement(
-                  //     context,
-                  //     MaterialPageRoute(builder: (context) => ProfileScreen()),
-                  //   );
-                  //
+                  // // Naviguer vers la page du profil après la connexion
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => ProfileScreen()),
+                  // );
                 },
                 child: Text('Se connecter'),
               ),
