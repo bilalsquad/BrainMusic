@@ -92,7 +92,7 @@ class LoginScreen extends StatelessWidget {
             OutlinedButton(
               style: OutlinedButton.styleFrom(
                 side: BorderSide(color: Colors.white), // border color
-                primary: Colors.white, // foreground color
+                foregroundColor: Colors.white, // foreground color
               ),
               onPressed: () {
                 // TODO: Implement registration logic
