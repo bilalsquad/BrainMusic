@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './LoginPage.dart';
+import './login_page.dart';
 
 class ProfileScreen extends StatelessWidget {
   final String randomEmail = 'exemple@email.com'; // Email au hasard

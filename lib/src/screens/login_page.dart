@@ -1,6 +1,6 @@
-import './signupScreen.dart';
+import './signup_page.dart';
 import 'package:flutter/material.dart';
-import './profilePage.dart';
+import './profile_page.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -16,11 +16,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(5.0),
         child: Container(
           width: 328,
-          height: 315,
-          margin: EdgeInsets.only(top: 299, left: 16),
+          height: 600,
+          margin: EdgeInsets.only(top: 10, left: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(color: Colors.white),
                 keyboardType: TextInputType.emailAddress,
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               TextFormField(
                 controller: passwordController,
                 decoration: InputDecoration(
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 obscureText: true,
                 style: TextStyle(color: Colors.white),
               ),
-              SizedBox(height: 40.0),
+              SizedBox(height: 10.0),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: Text('Se connecter'),
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: Colors.white),
