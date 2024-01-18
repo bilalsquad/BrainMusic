@@ -1,23 +1,9 @@
 import 'package:flutter/material.dart';
 // Importer le package sqflite
-import '../services/database_helper.dart'; // Importer le fichier database_helper.dart
+import '../models/database_helper.dart'; // Importer le fichier database_helper.dart
 import 'profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../models/Bouton.dart';
-
-class BrainMusicApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'BrainMusic',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: LoginScreen(),
-    );
-  }
-}
+import '../widgets/Bouton.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -31,7 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(

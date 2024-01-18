@@ -1,9 +1,9 @@
+import 'package:brain_music/widgets/bottombar.dart';
 import 'package:flutter/material.dart';
-import '../services/database_helper.dart'; // Importer le fichier database_helper.dart
+import '../models/database_helper.dart'; // Importer le fichier database_helper.dart
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login_page.dart';
-import '../../models/Bouton.dart';
-import 'donnees_page.dart';
+import '../widgets/Bouton.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -19,147 +19,104 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Padding(
-        padding: EdgeInsets.zero, // ou EdgeInsets.all(0.0)
+        body: Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: 16), // ou EdgeInsets.all(0.0)
 
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.only(top: 10.0), // Ajoutez cette ligne
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/logo.png',
-                      width: 45,
-                      height: 45,
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      'BrainMusic',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.only(top: 10.0), // Ajoutez cette ligne
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/logo.png',
+                        width: 45,
+                        height: 45,
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 8),
+                      Text(
+                        'BrainMusic',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              _buildEmailField('Email', randomEmail, () {
-                _showEmailEditDialog(context, 'Email', randomEmail, 1);
-              }),
-              _buildPasswordField('Mot de passe', randomPassword, () {
-                _showPasswordEditDialog(
-                  context,
-                  'Mot de passe',
-                  randomPassword,
-                  1,
-                );
-              }),
-              SizedBox(height: 200),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 41,
-                child: CenteredGenericButtonBV(
-                  buttonText: 'Supprimer mes données',
-                  onPressed: () async {
-                    //DatabaseHelper databaseHelper = DatabaseHelper();
-                  },
-                  buttonTextColor: Color(0xFF625B71),
-                  borderColor: Color(0xFF625B71),
+                _buildEmailField('Email', randomEmail, () {
+                  _showEmailEditDialog(context, 'Email', randomEmail, 1);
+                }),
+                _buildPasswordField('Mot de passe', randomPassword, () {
+                  _showPasswordEditDialog(
+                    context,
+                    'Mot de passe',
+                    randomPassword,
+                    1,
+                  );
+                }),
+                SizedBox(height: 200),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 41,
+                  child: CenteredGenericButtonBV(
+                    buttonText: 'Supprimer mes données',
+                    onPressed: () async {
+                      //DatabaseHelper databaseHelper = DatabaseHelper();
+                    },
+                    buttonTextColor: Color(0xFF625B71),
+                    borderColor: Color(0xFF625B71),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 41,
-                child: CenteredGenericButtonBV(
-                  buttonText: 'Supprimer profil',
-                  onPressed: () async {
-                    DatabaseHelper databaseHelper = DatabaseHelper();
-                    Future<int?> getSavedUserId() async {
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      return prefs.getInt('userId');
-                    }
-
-                    int? id = await getSavedUserId();
-                    if (id != null) {
-                      bool Userdelete = await databaseHelper.deleteUserById(id);
-                      if (Userdelete) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()),
-                        );
-                      } else {
-                        print('Aucun utilisateur trouvé avec cet ID');
+                SizedBox(
+                  height: 20.0,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 41,
+                  child: CenteredGenericButtonBV(
+                    buttonText: 'Supprimer profil',
+                    onPressed: () async {
+                      DatabaseHelper databaseHelper = DatabaseHelper();
+                      Future<int?> getSavedUserId() async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        return prefs.getInt('userId');
                       }
-                    }
-                  },
-                  buttonTextColor: Color(0xFF8C1D18),
-                  borderColor: Color(0xFF8C1D18),
+
+                      int? id = await getSavedUserId();
+                      if (id != null) {
+                        bool Userdelete =
+                            await databaseHelper.deleteUserById(id);
+                        if (Userdelete) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()),
+                          );
+                        } else {
+                          print('Aucun utilisateur trouvé avec cet ID');
+                        }
+                      }
+                    },
+                    buttonTextColor: Color(0xFF8C1D18),
+                    borderColor: Color(0xFF8C1D18),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.logout),
-            label: 'Déconnexion',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.data_usage),
-            label: 'Données',
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.work),
-            label: 'Expérience',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-        ],
-        onTap: (int index) {
-          if (index == 0) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-            );
-          } else if (index == 1) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => DonnesScreen()),
-            );
-          } else if (index == 2) {
-            print('Experience:');
-          } else if (index == 3) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => ProfileScreen()),
-            );
-          }
-        },
-      ),
-    );
+        bottomNavigationBar: BottomNavBar(
+          currentIndex: _currentIndex,
+        ));
   }
 
   Widget _buildEmailField(String label, String value, VoidCallback onPressed) {
@@ -187,17 +144,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               margin: EdgeInsets.only(right: 10),
               width: 54,
               height: 40,
-              child: ElevatedButton.icon(
+              child: ElevatedButton(
                 onPressed: onPressed,
-                icon: Icon(
+                child: Icon(
                   Icons.edit,
                   color: Color(0xFFD0BCFF) // Couleur du bouton
                   ,
-                  size: 18, // Taille de l'icône du bouton
-                ),
-                label: Text(
-                  '',
-                  style: TextStyle(fontSize: 14), // Taille du texte du bouton
+                  size: 25, // Taille de l'icône du bouton
                 ),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
@@ -206,7 +159,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   shape: MaterialStateProperty.all<OutlinedBorder>(
                     RoundedRectangleBorder(
                       borderRadius:
-                          BorderRadius.circular(22.0), // Rayon du bouton
+                          BorderRadius.circular(20.0), // Rayon du bouton
                     ),
                   ),
                 ),
@@ -245,17 +198,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               margin: EdgeInsets.only(right: 10),
               width: 54,
               height: 40,
-              child: ElevatedButton.icon(
+              child: ElevatedButton(
                 onPressed: onPressed,
-                icon: Icon(
+                child: Icon(
                   Icons.edit,
                   color: Color(0xFFD0BCFF) // Couleur du bouton
                   ,
-                  size: 18, // Taille de l'icône du bouton
-                ),
-                label: Text(
-                  '',
-                  style: TextStyle(fontSize: 14), // Taille du texte du bouton
+                  size: 25, // Taille de l'icône du bouton
                 ),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
@@ -264,7 +213,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   shape: MaterialStateProperty.all<OutlinedBorder>(
                     RoundedRectangleBorder(
                       borderRadius:
-                          BorderRadius.circular(22.0), // Rayon du bouton
+                          BorderRadius.circular(20.0), // Rayon du bouton
                     ),
                   ),
                 ),

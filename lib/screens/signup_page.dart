@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../services/database_helper.dart'; // Importer le fichier database_helper.dart
-import '../../models/Bouton.dart';
+import '../models/database_helper.dart'; // Importer le fichier database_helper.dart
+import '../widgets/Bouton.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override

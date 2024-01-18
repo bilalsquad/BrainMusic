@@ -11,7 +11,7 @@ class AppBar1 extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset(
-            "assets/Logo.png",
+            "assets/logo.png",
             fit: BoxFit.contain,
             height: 60,
           ),

@@ -1,5 +1,2 @@
-<<<<<<< HEAD
-=======
 #include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
->>>>>>> e2d535d (on remeeet tout)
 #include "Generated.xcconfig"

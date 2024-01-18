@@ -1,6 +1,7 @@
+import 'package:brain_music/widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 
-import '../services/database_helper.dart'; // Corrected import statement
+import '../models/database_helper.dart'; // Corrected import statement
 import 'profile_page.dart';
 import 'login_page.dart';
 
@@ -15,7 +16,7 @@ class DonnesScreenState extends State<DonnesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      bottomNavigationBar: BottomNavBar(currentIndex: 1),
       body: Padding(
         padding: EdgeInsets.zero,
         child: Center(
@@ -127,50 +128,6 @@ class DonnesScreenState extends State<DonnesScreen> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.logout),
-            label: 'Déconnexion',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.data_usage),
-            label: 'Données',
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.work),
-            label: 'Expérience',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-        ],
-        onTap: (int index) {
-          if (index == 0) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-            );
-          } else if (index == 1) {
-            // You are already on the "Données" tab, no need to navigate to the same screen.
-            // If you have specific logic for this tab, you can add it here.
-          } else if (index == 2) {
-            print('Experience:');
-          } else if (index == 3) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => ProfileScreen()),
-            );
-          }
-        },
       ),
     );
   }

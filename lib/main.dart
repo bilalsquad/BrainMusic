@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart'; // Importer le package sqflite
-import './services/database_helper.dart';
+import 'models/database_helper.dart';
 import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 import '../screens/login_page.dart';
 import 'package:path_provider/path_provider.dart';
@@ -29,4 +29,15 @@ void main() async {
   await DatabaseHelper().initDatabase();
 
   runApp(BrainMusicApp());
+}
+
+class BrainMusicApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'BrainMusic',
+      theme: ThemeData.dark(),
+      home: LoginScreen(),
+    );
+  }
 }

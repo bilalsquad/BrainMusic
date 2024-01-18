@@ -1,3 +1,4 @@
+import 'package:brain_music/screens/Experiences/experience_home_page.dart';
 import 'package:flutter/material.dart';
 import '../screens/login_page.dart';
 import '../screens/donnees_page.dart';
@@ -11,26 +12,26 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(73, 32, 32, 32),
       type: BottomNavigationBarType.fixed,
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.grey,
       currentIndex: currentIndex,
       items: [
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Icon(Icons.logout),
           label: 'Déconnexion',
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Icon(Icons.data_usage),
           label: 'Données',
           backgroundColor: Colors.white,
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Icon(Icons.work),
           label: 'Expérience',
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Profil',
         ),
@@ -47,7 +48,10 @@ class BottomNavBar extends StatelessWidget {
             MaterialPageRoute(builder: (context) => DonnesScreen()),
           );
         } else if (index == 2) {
-          print('Experience:');
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => ExperiencePage()),
+          );
         } else if (index == 3) {
           Navigator.pushReplacement(
             context,
