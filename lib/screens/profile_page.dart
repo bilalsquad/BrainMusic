@@ -1,4 +1,4 @@
-import 'package:brain_music/widgets/bottombar.dart';
+import '../widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 import '../models/database_helper.dart'; // Importer le fichier database_helper.dart
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,8 +20,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: 16), // ou EdgeInsets.all(0.0)
+          padding: const EdgeInsets.symmetric(
+              horizontal: 16), // ou EdgeInsets.all(0.0)
 
           child: Center(
             child: Column(
@@ -29,7 +29,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.only(top: 10.0), // Ajoutez cette ligne
+                  margin:
+                      const EdgeInsets.only(top: 10.0), // Ajoutez cette ligne
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -38,8 +39,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         width: 45,
                         height: 45,
                       ),
-                      SizedBox(height: 8),
-                      Text(
+                      const SizedBox(height: 8),
+                      const Text(
                         'BrainMusic',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -62,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     1,
                   );
                 }),
-                SizedBox(height: 200),
+                const SizedBox(height: 200),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: 41,
@@ -71,11 +72,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onPressed: () async {
                       //DatabaseHelper databaseHelper = DatabaseHelper();
                     },
-                    buttonTextColor: Color(0xFF625B71),
-                    borderColor: Color(0xFF625B71),
+                    buttonTextColor: const Color(0xFF625B71),
+                    borderColor: const Color(0xFF625B71),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 Container(
@@ -106,8 +107,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         }
                       }
                     },
-                    buttonTextColor: Color(0xFF8C1D18),
-                    borderColor: Color(0xFF8C1D18),
+                    buttonTextColor: const Color(0xFF8C1D18),
+                    borderColor: const Color(0xFF8C1D18),
                   ),
                 ),
               ],
@@ -124,29 +125,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(children: [
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
           Text(
             '$label',
-            style:
-                TextStyle(fontSize: 14, color: Colors.white), // Texte en blanc
+            style: const TextStyle(
+                fontSize: 14, color: Colors.white), // Texte en blanc
           ),
         ]),
         Row(
           children: [
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
             Text(
               value,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 14, color: Colors.white), // Texte en blanc
             ),
-            Spacer(),
+            const Spacer(),
             Container(
-              margin: EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               width: 54,
               height: 40,
               child: ElevatedButton(
                 onPressed: onPressed,
-                child: Icon(
+                child: const Icon(
                   Icons.edit,
                   color: Color(0xFFD0BCFF) // Couleur du bouton
                   ,
@@ -154,7 +155,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      Color(0xFF2B2930)), // Changer la couleur ici
+                      const Color(0xFF2B2930)), // Changer la couleur ici
 
                   shape: MaterialStateProperty.all<OutlinedBorder>(
                     RoundedRectangleBorder(
@@ -167,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }
@@ -178,29 +179,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(children: [
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
           Text(
             '$label',
-            style:
-                TextStyle(fontSize: 14, color: Colors.white), // Texte en blanc
+            style: const TextStyle(
+                fontSize: 14, color: Colors.white), // Texte en blanc
           ),
         ]),
         Row(
           children: [
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
             Text(
               value,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 14, color: Colors.white), // Texte en blanc
             ),
-            Spacer(),
+            const Spacer(),
             Container(
-              margin: EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               width: 54,
               height: 40,
               child: ElevatedButton(
                 onPressed: onPressed,
-                child: Icon(
+                child: const Icon(
                   Icons.edit,
                   color: Color(0xFFD0BCFF) // Couleur du bouton
                   ,
@@ -208,7 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      Color(0xFF2B2930)), // Changer la couleur ici
+                      const Color(0xFF2B2930)), // Changer la couleur ici
 
                   shape: MaterialStateProperty.all<OutlinedBorder>(
                     RoundedRectangleBorder(
@@ -221,7 +222,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }
@@ -248,13 +249,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             width: 402.0,
             height: 440.0,
             child: AlertDialog(
-              backgroundColor: Color(0xFF1d1b20),
+              backgroundColor: const Color(0xFF1d1b20),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(28.0), // Rayon de 100px
               ),
               title: Text(
                 'Modifier $label',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white, // Set the text color here
                 ),
               ),
@@ -267,50 +268,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: mdp,
-                        hintStyle: TextStyle(color: Colors.white54),
-                        enabledBorder: OutlineInputBorder(
+                        hintStyle: const TextStyle(color: Colors.white54),
+                        enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.blue),
                         ),
                       ),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    SizedBox(height: 15), // Espace de 15 entre les champs
+                    const SizedBox(height: 15), // Espace de 15 entre les champs
                     TextFormField(
                       controller: controller2,
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: hintText,
-                        hintStyle: TextStyle(color: Colors.white54),
-                        enabledBorder: OutlineInputBorder(
+                        hintStyle: const TextStyle(color: Colors.white54),
+                        enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
                               color: Color.fromARGB(255, 97, 130, 157)),
                         ),
                       ),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    SizedBox(height: 15), // Espace de 15 entre les champs
+                    const SizedBox(height: 15), // Espace de 15 entre les champs
                     TextFormField(
                       controller: controller3,
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: confirmHintText,
-                        hintStyle: TextStyle(color: Colors.white54),
-                        enabledBorder: OutlineInputBorder(
+                        hintStyle: const TextStyle(color: Colors.white54),
+                        enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.blue),
                         ),
                       ),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       keyboardType: TextInputType.emailAddress,
                     ),
                   ],
@@ -321,7 +322,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(
+                  child: const Text(
                     'Annuler',
                     style: TextStyle(
                       color: Color(0xFFCCC2DC), // Set the text color here
@@ -329,7 +330,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 TextButton(
-                  child: Text(
+                  child: const Text(
                     'Sauvegarder',
                     style: TextStyle(
                       color: Color(0xFFD0BCFF), // Set the text color here
@@ -407,13 +408,13 @@ Future<void> _showEmailEditDialog(
           width: 402.0,
           height: 440.0,
           child: AlertDialog(
-            backgroundColor: Color(0xFF1d1b20),
+            backgroundColor: const Color(0xFF1d1b20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(28.0), // Rayon de 100px
             ),
             title: Text(
               'Modifier $label',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white, // Set the text color here
               ),
             ),
@@ -426,32 +427,32 @@ Future<void> _showEmailEditDialog(
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: mdp,
-                      hintStyle: TextStyle(color: Colors.white54),
-                      enabledBorder: OutlineInputBorder(
+                      hintStyle: const TextStyle(color: Colors.white54),
+                      enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.blue),
                       ),
                     ),
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 15), // Espace de 15 entre les champs
+                  const SizedBox(height: 15), // Espace de 15 entre les champs
                   TextFormField(
                     controller: newEmailController,
                     decoration: InputDecoration(
                       hintText: newEmailHint,
-                      hintStyle: TextStyle(color: Colors.white54),
-                      enabledBorder: OutlineInputBorder(
+                      hintStyle: const TextStyle(color: Colors.white54),
+                      enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 97, 130, 157)),
                       ),
                     ),
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     keyboardType: TextInputType.emailAddress,
                   ),
                 ],
@@ -462,7 +463,7 @@ Future<void> _showEmailEditDialog(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
+                child: const Text(
                   'Annuler',
                   style: TextStyle(
                     color: Color(0xFFCCC2DC), // Set the text color here
@@ -470,7 +471,7 @@ Future<void> _showEmailEditDialog(
                 ),
               ),
               TextButton(
-                child: Text(
+                child: const Text(
                   'Sauvegarder',
                   style: TextStyle(
                     color: Color(0xFFD0BCFF), // Set the text color here

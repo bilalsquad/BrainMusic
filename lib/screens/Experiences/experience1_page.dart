@@ -1,3 +1,5 @@
+import 'package:musicbrainflutter/screens/Experiences/experience5_page.dart';
+
 import './experience2_page.dart';
 import './../../widgets/appbar.dart';
 import './../../widgets/progression_barre.dart';
@@ -10,7 +12,7 @@ class ExperiencePage1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBar1(),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
@@ -49,7 +51,8 @@ class ExperiencePage1 extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Experience2()),
+                MaterialPageRoute(
+                    builder: (context) => const ExperiencePage5()),
               ),
               child: Container(
                 height: 40,

@@ -1,4 +1,4 @@
-import 'package:brain_music/widgets/bottombar.dart';
+import '/widgets/bottombar.dart';
 
 import './experience1_page.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +68,7 @@ class ExperiencePage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                     ),
-                    child: const Row(
+                    child: Row(
                       children: [
                         Icon(
                           Icons.music_note,
@@ -97,7 +97,7 @@ class ExperiencePage extends StatelessWidget {
                 const SizedBox(
                   height: 50,
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 17),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

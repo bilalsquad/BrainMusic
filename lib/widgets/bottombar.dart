@@ -1,4 +1,4 @@
-import 'package:brain_music/screens/Experiences/experience_home_page.dart';
+import '../screens/Experiences/experience_home_page.dart';
 import 'package:flutter/material.dart';
 import '../screens/login_page.dart';
 import '../screens/donnees_page.dart';

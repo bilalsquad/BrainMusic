@@ -1,4 +1,4 @@
-import 'package:brain_music/widgets/bottombar.dart';
+import '../widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 
 import '../models/database_helper.dart'; // Corrected import statement
@@ -16,7 +16,7 @@ class DonnesScreenState extends State<DonnesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavBar(currentIndex: 1),
+      bottomNavigationBar: const BottomNavBar(currentIndex: 1),
       body: Padding(
         padding: EdgeInsets.zero,
         child: Center(
@@ -25,7 +25,7 @@ class DonnesScreenState extends State<DonnesScreen> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.only(top: 10.0),
+                margin: const EdgeInsets.only(top: 10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -34,8 +34,8 @@ class DonnesScreenState extends State<DonnesScreen> {
                       width: 45,
                       height: 45,
                     ),
-                    SizedBox(height: 8),
-                    Text(
+                    const SizedBox(height: 8),
+                    const Text(
                       'BrainMusic',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -44,7 +44,7 @@ class DonnesScreenState extends State<DonnesScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Participez à des expériences pour obtenir des données',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -52,7 +52,7 @@ class DonnesScreenState extends State<DonnesScreen> {
                         fontSize: 14,
                       ),
                     ),
-                    SizedBox(height: 8), // Add spacing
+                    const SizedBox(height: 8), // Add spacing
 
                     // Updated container structure
                     Container(
@@ -60,7 +60,7 @@ class DonnesScreenState extends State<DonnesScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Mes données',
                             style: TextStyle(
                               color: Colors.white,
@@ -74,14 +74,14 @@ class DonnesScreenState extends State<DonnesScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       '19/06/2024 à 15:43',
                                       style: TextStyle(
                                         color: Color(0xFF49454F),
                                         fontSize: 12,
                                       ),
                                     ),
-                                    Text(
+                                    const Text(
                                       'Session 3',
                                       style: TextStyle(
                                         color: Color(0xFFE6E0E9),
@@ -93,7 +93,7 @@ class DonnesScreenState extends State<DonnesScreen> {
                               ),
 
                               // Spacer to create the desired margin
-                              SizedBox(width: 15),
+                              const SizedBox(width: 15),
 
                               // Download button with an icon
                               InkWell(
@@ -110,8 +110,8 @@ class DonnesScreenState extends State<DonnesScreen> {
                                   }
                                 },
                                 child: Container(
-                                  padding: EdgeInsets.all(8),
-                                  child: Icon(
+                                  padding: const EdgeInsets.all(8),
+                                  child: const Icon(
                                     Icons.download,
                                     color: Colors.white,
                                   ),

@@ -17,14 +17,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
               width: 328,
               height: 505,
-              margin: EdgeInsets.only(top: 96, left: 16),
+              margin: const EdgeInsets.only(top: 96, left: 16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
@@ -36,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         width: 64,
                         height: 64,
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       const Text(
                         'BrainMusic',
                         textAlign: TextAlign.center,
@@ -61,10 +61,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderSide: BorderSide(color: Colors.blue),
                       ),
                     ),
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
                     controller: passwordController,
                     decoration: const InputDecoration(
@@ -78,9 +78,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     obscureText: true,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
                     controller: confirmPasswordController,
                     decoration: const InputDecoration(
@@ -94,9 +94,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     obscureText: true,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
-                  SizedBox(height: 40.0),
+                  const SizedBox(height: 40.0),
                   Container(
                     width: 156,
                     height: 40,
@@ -123,7 +123,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         // Naviguer vers la page du profil après la connexion
                         Navigator.pop(context);
                       },
-                      buttonTextColor: Color(0xFF381E72),
+                      buttonTextColor: const Color(0xFF381E72),
                     ),
                   ),
                   GestureDetector(
@@ -131,7 +131,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       // Naviguer vers l'écran de connexion
                       Navigator.pop(context);
                     },
-                    child: Text(
+                    child: const Text(
                       'Déjà un compte ? Connectez-vous',
                       style: TextStyle(
                         color: Colors.white,

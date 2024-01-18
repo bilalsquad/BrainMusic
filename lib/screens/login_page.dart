@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment:
               MainAxisAlignment.start, // Ajustement pour commencer en haut
@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               width: 328,
               height: 505,
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                   top: 96, left: 16), // Ajuster la distance du haut
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -39,8 +39,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 64,
                         height: 64,
                       ),
-                      SizedBox(width: 8),
-                      Text(
+                      const SizedBox(width: 8),
+                      const Text(
                         'BrainMusic',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -51,10 +51,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   TextFormField(
                     controller: emailController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Email',
                       hintStyle: TextStyle(color: Colors.white54),
                       enabledBorder: OutlineInputBorder(
@@ -64,13 +64,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderSide: BorderSide(color: Colors.blue),
                       ),
                     ),
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   TextFormField(
                     controller: passwordController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Mot de passe',
                       hintStyle: TextStyle(color: Colors.white54),
                       enabledBorder: OutlineInputBorder(
@@ -81,9 +81,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     obscureText: true,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40.0,
                     width: 500,
                   ),
@@ -137,13 +137,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           print('Email ou mot de passe incorrect');
                         }
                       },
-                      buttonTextColor: Color(0xFF381E72),
+                      buttonTextColor: const Color(0xFF381E72),
                     ),
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: Colors.white),
+                      side: const BorderSide(color: Colors.white),
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
@@ -154,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     },
-                    child: Text("S'inscrire"),
+                    child: const Text("S'inscrire"),
                   ),
                 ],
               ),
@@ -181,14 +181,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
               width: 328,
               height: 505,
-              margin: EdgeInsets.only(top: 96, left: 16),
+              margin: const EdgeInsets.only(top: 96, left: 16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
@@ -200,8 +200,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         width: 64,
                         height: 64,
                       ),
-                      SizedBox(width: 8),
-                      Text(
+                      const SizedBox(width: 8),
+                      const Text(
                         'BrainMusic',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -212,10 +212,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   TextFormField(
                     controller: emailController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Email',
                       hintStyle: TextStyle(color: Colors.white54),
                       enabledBorder: OutlineInputBorder(
@@ -225,13 +225,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderSide: BorderSide(color: Colors.blue),
                       ),
                     ),
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
                     controller: passwordController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Mot de passe',
                       hintStyle: TextStyle(color: Colors.white54),
                       enabledBorder: OutlineInputBorder(
@@ -242,12 +242,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     obscureText: true,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
                     controller: confirmPasswordController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Confirmer mot de passe',
                       hintStyle: TextStyle(color: Colors.white54),
                       enabledBorder: OutlineInputBorder(
@@ -258,9 +258,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     obscureText: true,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
-                  SizedBox(height: 40.0),
+                  const SizedBox(height: 40.0),
                   Container(
                     width: 156,
                     height: 40,
@@ -287,7 +287,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         // Naviguer vers la page du profil après la connexion
                         Navigator.pop(context);
                       },
-                      buttonTextColor: Color(0xFF381E72),
+                      buttonTextColor: const Color(0xFF381E72),
                     ),
                   ),
                   GestureDetector(
@@ -295,7 +295,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       // Naviguer vers l'écran de connexion
                       Navigator.pop(context);
                     },
-                    child: Text(
+                    child: const Text(
                       'Déjà un compte ? Connectez-vous',
                       style: TextStyle(
                         color: Colors.white,
