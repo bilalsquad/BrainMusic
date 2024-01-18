@@ -48,7 +48,7 @@ class GenericButtonBV extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color((0xFF2e2e2e)),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100.0), // Rayon de 100px
           side: BorderSide(
