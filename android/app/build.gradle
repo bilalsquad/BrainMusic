@@ -24,9 +24,8 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.brain_music"
-    compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
-
+    compileSdkVersion 33
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
