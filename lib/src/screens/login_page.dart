@@ -6,18 +6,7 @@ import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 import 'profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'signup_page.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Change default factory on the web
-  databaseFactory = databaseFactoryFfiWeb;
-
-  // Appel à la méthode initDatabase pour créer la base de données SQLite
-  await DatabaseHelper().initDatabase();
-
-  runApp(BrainMusicApp());
-}
+import '../models/Bouton.dart';
 
 class BrainMusicApp extends StatelessWidget {
   @override
@@ -29,98 +18,6 @@ class BrainMusicApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: LoginScreen(),
-    );
-  }
-}
-
-class GenericButton extends StatelessWidget {
-  final String buttonText;
-  final VoidCallback onPressed;
-  final Color buttonTextColor;
-
-  GenericButton({
-    required this.buttonText,
-    required this.onPressed,
-    required this.buttonTextColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        primary: Color(0xFFD0BCFF),
-        onPrimary: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100.0), // Rayon de 100px
-        ),
-      ),
-      child: Text(
-        buttonText,
-        style: TextStyle(color: buttonTextColor),
-      ),
-    );
-  }
-}
-
-class GenericButtonBV extends StatelessWidget {
-  final String buttonText;
-  final VoidCallback onPressed;
-  final Color buttonTextColor;
-  final Color borderColor;
-
-  GenericButtonBV({
-    required this.buttonText,
-    required this.onPressed,
-    required this.buttonTextColor,
-    required this.borderColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100.0), // Rayon de 100px
-          side: BorderSide(
-            color: borderColor,
-            width: 1.0,
-          ),
-          // Couleur de la bordure
-        ),
-      ),
-      child: Text(
-        buttonText,
-        style: TextStyle(color: buttonTextColor),
-      ),
-    );
-  }
-}
-
-class CenteredGenericButtonBV extends StatelessWidget {
-  final String buttonText;
-  final VoidCallback onPressed;
-  final Color buttonTextColor;
-  final Color borderColor;
-
-  CenteredGenericButtonBV({
-    required this.buttonText,
-    required this.onPressed,
-    required this.buttonTextColor,
-    required this.borderColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: GenericButtonBV(
-        buttonText: buttonText,
-        onPressed: onPressed,
-        buttonTextColor: buttonTextColor,
-        borderColor: borderColor,
-      ),
     );
   }
 }

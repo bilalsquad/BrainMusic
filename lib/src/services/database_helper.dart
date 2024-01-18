@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
   static Database? _database;
@@ -14,21 +15,49 @@ class DatabaseHelper {
     return _database!;
   }
 
+  Future<String> getDatabasePath() async {
+    final directory = await getApplicationDocumentsDirectory();
+    return join(directory.path, 'your_database.db');
+  }
+
   Future<Database> initDatabase() async {
     String path = join(await getDatabasesPath(), 'brainmusic.db');
     return await openDatabase(
       path,
-      version: 1,
+      version: 2, // Increment the version to apply changes
       onCreate: (Database db, int version) async {
-        // Créer la table utilisateur lors de la création de la base de données
+        // Create the 'users' table
         await db.execute('''
-          CREATE TABLE IF NOT EXISTS users(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT,
-            password TEXT
-          )
-        ''');
+    CREATE TABLE IF NOT EXISTS users(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT,
+      password TEXT
+    )
+  ''');
+
+        // Create the 'sessions' table with a foreign key reference to 'users' table
+        await db.execute('''
+    CREATE TABLE IF NOT EXISTS sessions(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      session_text TEXT,
+      user_id INTEGER,
+      date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY(user_id) REFERENCES users(id)
+    )
+  ''');
       },
+      onUpgrade: (Database db, int oldVersion, int newVersion) async {
+        // Handle database schema upgrades here if needed
+      },
+    );
+  }
+
+  Future<void> insertSession(String sessionText, int userId) async {
+    final Database db = await database;
+    await db.insert(
+      'sessions',
+      {'session_text': sessionText, 'user_id': userId},
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 

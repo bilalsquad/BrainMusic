@@ -1,98 +1,38 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart'; // Importer le package sqflite
+import '../services/database_helper.dart'; // Importer le fichier database_helper.dart
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
-class ProfileScreen extends StatelessWidget {
-  final String randomEmail = 'exemple@email.com'; // Email au hasard
-  final String randomPassword = '********'; // Mot de passe au hasard
+import '../screens/profile_page.dart';
+import '../screens/login_page.dart';
+import '../services/database_helper.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Profil'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildDataField('Email', randomEmail),
-            SizedBox(height: 10),
-            _buildDataField('Mot de passe', randomPassword),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.logout),
-            label: 'Déconnexion',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.data_usage),
-            label: 'Données',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.work),
-            label: 'Expérience',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-        ],
-        onTap: (int index) {
-          if (index == 0) {
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => LoginScreen()),
-            // );
-          } else if (index == 1) {
-            print('Donnée:');
-          } else if (index == 2) {
-            print('Experience:');
-          } else if (index == 3) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => ProfileScreen()),
-            );
-          }
-        },
-      ),
-    );
+import 'package:shared_preferences/shared_preferences.dart';
+import '../screens/signup_page.dart';
+import 'package:path_provider/path_provider.dart';
+
+Future<String> getDatabasePath() async {
+  final directory = await getApplicationDocumentsDirectory();
+  return join(directory.path, 'your_database.db');
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  String databasePath = await getDatabasePath();
+  String path = join(databasePath, 'brainmusic.db');
+
+  // Configure the database factory based on the platform
+  if (kIsWeb) {
+    databaseFactory = databaseFactoryFfiWeb;
+  } else {
+    // Platform-specific configurations, if needed
   }
 
-  Widget _buildDataField(String label, String value) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '$label',
-          style: TextStyle(fontSize: 18),
-        ),
-        SizedBox(height: 5),
-        Row(
-          children: [
-            Text(
-              '$label:',
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              value,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(width: 10),
-            ElevatedButton.icon(
-              onPressed: () {
-                // Action lorsque l'utilisateur appuie sur le bouton crayon
-                print('$label: $value');
-              },
-              icon: Icon(Icons.edit),
-              label: Text('Modifier'),
-            ),
-          ],
-        ),
-        Divider(),
-      ],
-    );
-  }
+  // Call the initDatabase method without passing a path
+  await DatabaseHelper().initDatabase();
+
+  runApp(BrainMusicApp());
 }

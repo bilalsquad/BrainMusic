@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart'; // Importer le package sqflite
+import '../services/database_helper.dart'; // Importer le fichier database_helper.dart
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
+import 'profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'database_helper.dart';
+import 'signup_page.dart';
 import 'login_page.dart';
+import '../models/Bouton.dart';
+import 'donnees_page.dart ';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -143,7 +150,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               MaterialPageRoute(builder: (context) => LoginScreen()),
             );
           } else if (index == 1) {
-            print('Donnée:');
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => DonnesScreen()),
+            );
           } else if (index == 2) {
             print('Experience:');
           } else if (index == 3) {
