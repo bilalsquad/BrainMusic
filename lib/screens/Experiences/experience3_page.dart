@@ -26,21 +26,19 @@ class ExperiencePage3 extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: const Text(
-                  'Veuillez activer le bluetooth afin de vous connecter au dispositif.',
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
+                    'Veuillez activer le bluetooth afin de vous connecter au dispositif.',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center),
               ),
               const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
                 onPressed: () async {
-                  // Créez une instance de FlutterBlue
                   FlutterBlue flutterBlue = FlutterBlue.instance;
 
                   // Vérifiez si le Bluetooth est activé
@@ -73,8 +71,24 @@ class ExperiencePage3 extends StatelessWidget {
                       },
                     );
                   } else {
-                    // Le Bluetooth est déjà activé
-                    // Vous pouvez continuer votre logique de connexion Bluetooth ici
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Bluetooth activé'),
+                          content: Text("Passez à l'étape suivant."),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text('Suivant'),
+                              onPressed: () {
+                                // Ouvre les paramètres Bluetooth du système
+                                AppSettings.openAppSettings();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   }
                 },
                 child: Text('Vérifier Bluetooth'),
