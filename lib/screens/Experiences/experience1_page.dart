@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musicbrainflutter/widgets/Experience/bottombar_experience.dart';
-import './../../widgets/appbar.dart';
+import '../../widgets/Experience/appbar.dart';
 import '../../widgets/Experience/progression_barre.dart';
 import './experience2_page.dart';
 
@@ -9,14 +9,14 @@ class ExperiencePage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: const AppBar1(),
+    return const Scaffold(
+        appBar: AppBar1(),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
                 '\n\nDurée : 30 minutes\nMatériel : Muse bandeau\nEnvironnement : Calme, seul, les yeux fermés\n',
                 style: TextStyle(
@@ -44,7 +44,7 @@ class ExperiencePage1 extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: const BotBarExp(
+        bottomNavigationBar: BotBarExp(
           pageSuivante: ExperiencePage2(),
         ));
   }

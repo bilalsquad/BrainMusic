@@ -1,6 +1,6 @@
 // ... Autres importations
 
-import './../../widgets/appbar.dart';
+import '../../widgets/Experience/appbar.dart';
 
 import 'package:flutter/material.dart';
 import 'experience6_page.dart';
@@ -19,13 +19,13 @@ class ExperiencePage5 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: 328,
+                width: 502,
                 height: 110,
                 clipBehavior: Clip.antiAlias,
                 decoration: ShapeDecoration(
                   color: const Color(0xFFD0BCFF),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                 ),
                 child: ElevatedButton(
@@ -45,7 +45,7 @@ class ExperiencePage5 extends StatelessWidget {
                       Icon(
                         Icons.music_note,
                         color: Colors.black,
-                        size: 36,
+                        size: 50,
                       ),
                       SizedBox(
                         width: 10,

@@ -89,7 +89,7 @@ class ExperiencePage extends StatelessWidget {
                             'Participer à l’expérience\n BrainMusic',
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 24,
+                                fontSize: 22,
                                 fontFamily: 'Roboto',
                                 fontWeight: FontWeight.w400,
                                 height: 1.2,
