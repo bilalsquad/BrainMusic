@@ -1,3 +1,5 @@
+import 'package:musicbrainflutter/widgets/appbar.dart';
+
 import '../widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +18,10 @@ class DonnesScreenState extends State<DonnesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const AppBar1(),
       bottomNavigationBar: const BottomNavBar(currentIndex: 1),
       body: Padding(
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -29,21 +32,6 @@ class DonnesScreenState extends State<DonnesScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/logo.png',
-                      width: 45,
-                      height: 45,
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'BrainMusic',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                     const Text(
                       'Participez à des expériences pour obtenir des données',
                       textAlign: TextAlign.center,
