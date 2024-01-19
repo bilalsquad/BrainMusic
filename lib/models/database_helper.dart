@@ -15,10 +15,10 @@ class DatabaseHelper {
     return _database!;
   }
 
-  Future<String> getDatabasePath() async {
-    final directory = await getApplicationDocumentsDirectory();
-    return join(directory.path, 'your_database.db');
-  }
+  // Future<String> getDatabasePath() async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   return join(directory.path, 'your_database.db');
+  // }
 
   Future<Database> initDatabase() async {
     String path = join(await getDatabasesPath(), 'brainmusic.db');

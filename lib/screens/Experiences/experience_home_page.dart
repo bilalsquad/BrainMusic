@@ -51,15 +51,15 @@ class ExperiencePage extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  width: 372,
+                  width: 502,
                   height: 127,
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
                   padding: const EdgeInsets.symmetric(
                       horizontal: 14,
                       vertical: 30), // Réduit le padding vertical
                   clipBehavior: Clip.antiAlias,
                   decoration: ShapeDecoration(
-                    color: Color(0xFFD0BCFF),
+                    color: const Color(0xFFD0BCFF),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
                   ),
@@ -75,8 +75,8 @@ class ExperiencePage extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => const ExperiencePage1()),
                       ),
-                      child: const Row(
-                        children: [
+                      child: Row(
+                        children: const [
                           Icon(
                             Icons.music_note,
                             color: Colors.black,
@@ -86,7 +86,7 @@ class ExperiencePage extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            'Participer à l’expérience BrainMusic',
+                            'Participer à l’expérience\n BrainMusic',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 24,
@@ -103,11 +103,11 @@ class ExperiencePage extends StatelessWidget {
                 const SizedBox(
                   height: 50,
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 17),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       Text('Qu’est-ce que BrainMusic ?',
                           style: TextStyle(
                               color: Colors.white,

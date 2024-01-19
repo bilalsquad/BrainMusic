@@ -55,6 +55,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.blue),
                 ),
+                prefixIcon: Icon(
+                  Icons.person,
+                  color: Color(0xFFCAC4D0),
+                ),
               ),
               style: const TextStyle(color: Colors.white),
               keyboardType: TextInputType.emailAddress,
@@ -71,6 +75,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.blue),
                 ),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Color(0xFFCAC4D0),
+                ),
               ),
               obscureText: true,
               style: const TextStyle(color: Colors.white),
@@ -86,6 +94,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.blue),
+                ),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Color(0xFFCAC4D0),
                 ),
               ),
               obscureText: true,

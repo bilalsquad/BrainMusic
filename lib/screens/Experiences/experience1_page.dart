@@ -9,14 +9,14 @@ class ExperiencePage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        appBar: AppBar1(),
+    return Scaffold(
+        appBar: const AppBar1(),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Text(
                 '\n\nDurée : 30 minutes\nMatériel : Muse bandeau\nEnvironnement : Calme, seul, les yeux fermés\n',
                 style: TextStyle(
@@ -44,7 +44,7 @@ class ExperiencePage1 extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: BotBarExp(
+        bottomNavigationBar: const BotBarExp(
           pageSuivante: ExperiencePage2(),
         ));
   }

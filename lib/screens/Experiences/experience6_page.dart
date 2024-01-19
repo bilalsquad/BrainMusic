@@ -1,24 +1,41 @@
 import 'dart:async';
-import './../../widgets/appbar.dart';
 import 'package:flutter/material.dart';
-import 'experience7_page.dart'; // Importez la nouvelle page
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
+
+import '../../widgets/appbar.dart';
+import 'experience7_page.dart';
 
 class ExperiencePage6 extends StatefulWidget {
-  const ExperiencePage6({super.key});
+  const ExperiencePage6({Key? key}) : super(key: key);
 
   @override
   _ExperiencePage6State createState() => _ExperiencePage6State();
 }
 
-class _ExperiencePage6State extends State<ExperiencePage6> {
+class _ExperiencePage6State extends State<ExperiencePage6>
+    with WidgetsBindingObserver {
   bool _showText = true;
   bool _showTimer = false;
-  int _timerSeconds = 3; // 30 minutes
+  int _timerSeconds = 60 * 25 +
+      120; // 30 minutes  le +5 sec c'est pour el temps de fermer les yeux
+  late AudioPlayer audioPlayer;
+  bool _isApplicationPaused = false;
 
   @override
   void initState() {
     super.initState();
+    audioPlayer = AudioPlayer();
+    _initializeAudioPlayer();
     _startTimer();
+    WidgetsBinding.instance?.addObserver(this);
+  }
+
+  void _initializeAudioPlayer() {
+    audioPlayer = AudioPlayer();
+
+    audioPlayer.setReleaseMode(
+        ReleaseMode.stop); // Release audio player when app goes to background
   }
 
   void _startTimer() {
@@ -32,6 +49,24 @@ class _ExperiencePage6State extends State<ExperiencePage6> {
           _startTimer30M();
         });
       }
+    });
+
+    Future.delayed(const Duration(seconds: 60 * 2), () {
+      if (mounted) {
+        setState(() {
+          // Mettre à jour l'état pour lancer la musique
+          _playMusic();
+        });
+      }
+    });
+  }
+
+  void _playMusic() {
+    // Remplacez 'chemin_vers_votre_fichier.mp3' par le chemin réel de votre fichier MP3
+    audioPlayer
+        .play(AssetSource('assets/BrainMusiqueExp.mp3'))
+        .catchError((error) {
+      print('Erreur de lecture audio: $error');
     });
   }
 
@@ -56,6 +91,7 @@ class _ExperiencePage6State extends State<ExperiencePage6> {
           setState(() {
             // Mettre à jour l'état pour cacher le minuteur
             _showTimer = false;
+            audioPlayer.stop();
           });
         }
         // Naviguer vers la nouvelle page lorsque le minuteur se termine
@@ -67,6 +103,27 @@ class _ExperiencePage6State extends State<ExperiencePage6> {
         updateTimer();
       }
     });
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.paused) {
+      // L'application est mise en arrière-plan
+      _isApplicationPaused = true;
+      audioPlayer.pause();
+    } else if (state == AppLifecycleState.resumed && _isApplicationPaused) {
+      // L'application revient en premier plan après avoir été mise en arrière-plan
+      _isApplicationPaused = false;
+      audioPlayer.resume();
+    }
   }
 
   @override

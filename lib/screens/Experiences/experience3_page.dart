@@ -1,5 +1,5 @@
 import 'package:app_settings/app_settings.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+// import 'package:flutter_blue/flutter_blue.dart';
 import 'package:musicbrainflutter/screens/Experiences/experience4_page.dart';
 import 'package:musicbrainflutter/widgets/Experience/bottombar_experience.dart';
 import '../../widgets/Experience/progression_barre.dart';
@@ -39,57 +39,42 @@ class ExperiencePage3 extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  FlutterBlue flutterBlue = FlutterBlue.instance;
+                  // Créez une instance de FlutterBlue
+                  // FlutterBlue flutterBlue = FlutterBlue.instance;
 
                   // Vérifiez si le Bluetooth est activé
-                  var isOn = await flutterBlue.isOn;
-                  if (!isOn) {
-                    // Informer l'utilisateur que le Bluetooth n'est pas activé
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text('Bluetooth désactivé'),
-                          content: Text(
-                              'Veuillez activer le Bluetooth pour vous connecter au dispositif.'),
-                          actions: <Widget>[
-                            TextButton(
-                              child: Text('Paramètres'),
-                              onPressed: () {
-                                // Ouvre les paramètres Bluetooth du système
-                                AppSettings.openAppSettings();
-                              },
-                            ),
-                            TextButton(
-                              child: Text('Annuler'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  } else {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text('Bluetooth activé'),
-                          content: Text("Passez à l'étape suivant."),
-                          actions: <Widget>[
-                            TextButton(
-                              child: Text('Suivant'),
-                              onPressed: () {
-                                // Ouvre les paramètres Bluetooth du système
-                                AppSettings.openAppSettings();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
+                  // var isOn = await flutterBlue.isOn;
+                  // if (!isOn) {
+                  //   // Informer l'utilisateur que le Bluetooth n'est pas activé
+                  //   showDialog(
+                  //     context: context,
+                  //     builder: (context) {
+                  //       return AlertDialog(
+                  //         title: Text('Bluetooth désactivé'),
+                  //         content: Text(
+                  //             'Veuillez activer le Bluetooth pour vous connecter au dispositif.'),
+                  //         actions: <Widget>[
+                  //           TextButton(
+                  //             child: Text('Paramètres'),
+                  //             onPressed: () {
+                  //               // Ouvre les paramètres Bluetooth du système
+                  //               AppSettings.openAppSettings();
+                  //             },
+                  //           ),
+                  //           TextButton(
+                  //             child: Text('Annuler'),
+                  //             onPressed: () {
+                  //               Navigator.of(context).pop();
+                  //             },
+                  //           ),
+                  //         ],
+                  //       );
+                  //     },
+                  //   );
+                  // } else {
+                  //   // Le Bluetooth est déjà activé
+                  //   // Vous pouvez continuer votre logique de connexion Bluetooth ici
+                  // }
                 },
                 child: Text('Vérifier Bluetooth'),
               ),

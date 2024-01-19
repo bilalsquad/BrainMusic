@@ -14,22 +14,47 @@ class ExperiencePage4 extends StatelessWidget {
       appBar: const AppBar1(),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const Text(
-            'Bravo vous avez complété l’expérience !',
-            style: TextStyle(
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w400,
-              fontSize: 22,
+          Container(
+            width: 214,
+            height: 40,
+            child: GenericButton(
+              buttonText: 'Se connecter à MUSE-001',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ExperiencePage5()),
+                );
+              },
+              buttonTextColor: const Color(0xFF381E72),
             ),
           ),
           const SizedBox(
-            height: 95,
+            height: 16,
           ),
           Container(
-            width: 185,
+            width: 214,
             height: 40,
             child: GenericButton(
-              buttonText: 'Terminer l’expérience ',
+              buttonText: 'Se connecter à MUSE-002',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ExperiencePage5()),
+                );
+              },
+              buttonTextColor: const Color(0xFF381E72),
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Container(
+            width: 214,
+            height: 40,
+            child: GenericButton(
+              buttonText: 'Se connecter à MUSE-003',
               onPressed: () {
                 Navigator.push(
                   context,
