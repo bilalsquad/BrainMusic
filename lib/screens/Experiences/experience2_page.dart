@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:musicbrainflutter/screens/Experiences/experience1_page.dart';
+import 'package:musicbrainflutter/widgets/Experience/bottombar_experience.dart';
 import 'experience3_page.dart';
 
 import '../../widgets/Bouton.dart';
-import '../../widgets/progression_barre.dart';
+import '../../widgets/Experience/progression_barre.dart';
 import './../../widgets/appbar.dart';
 
 class ExperiencePage2 extends StatefulWidget {
@@ -38,18 +38,20 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
     List<String> selectedPays = [];
 
     return Scaffold(
+      bottomNavigationBar: const BotBarExp(pageSuivante: ExperiencePage3()),
       appBar: const AppBar1(),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start, // Aligner à gauche
         children: [
-          SizedBox(
+          const SizedBox(
             height: 48,
           ),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: const Text(
-              'Informations personnelles !',
+              'Informations personnelles ',
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.w400,
@@ -57,7 +59,7 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Container(
@@ -73,7 +75,7 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
                 borderRadius: BorderRadius.circular(4.0), // Rayon de bordure
               ),
               child: InputDecorator(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.calendar_today),
                   border: InputBorder
                       .none, // Supprimer la bordure du décorateur d'entrée
@@ -96,7 +98,7 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Container(
@@ -111,7 +113,7 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Container(
@@ -127,7 +129,7 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
                 borderRadius: BorderRadius.circular(4.0),
               ),
               child: InputDecorator(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.map),
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.zero,
@@ -145,7 +147,7 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
                     });
                   },
                   items: [
-                    DropdownMenuItem<String>(
+                    const DropdownMenuItem<String>(
                       value: null,
                       child: Text('Culture'),
                     ),
@@ -168,7 +170,7 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 22,
           ),
           Row(
@@ -191,7 +193,7 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
           Container(
@@ -210,26 +212,13 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
               buttonTextColor: const Color(0xFF381E72),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 234,
           ),
           const PageProgressIndicator(
             currentPage: 2,
             totalPage: 3,
           ),
-          GenericButtonBV(
-            buttonText: 'Retour',
-            onPressed: () async {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ExperiencePage1(),
-                ),
-              );
-            },
-            buttonTextColor: const Color(0xFFD0BCFF),
-            borderColor: const Color(0xFF2e2e2e),
-          )
         ],
       ),
     );

@@ -9,7 +9,7 @@ class ExperiencePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomNavBar(
+        bottomNavigationBar: const BottomNavBar(
           currentIndex: 2,
         ),
         body: SingleChildScrollView(
@@ -50,36 +50,42 @@ class ExperiencePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                ElevatedButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ExperiencePage1()),
+                Container(
+                  width: 372,
+                  height: 127,
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 30), // Réduit le padding vertical
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFD0BCFF),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
                   ),
-                  child: Container(
-                    width: 372,
-                    height: 127,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 30), // Réduit le padding vertical
-                    clipBehavior: Clip.antiAlias,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFD0BCFF),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.music_note,
-                          color: Colors.black,
-                          size: 50,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Text(
+                  child: Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Colors.transparent, // Couleur de fond du bouton
+                        shadowColor: Colors.transparent, // Enlève l'ombre
+                      ),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ExperiencePage1()),
+                      ),
+                      child: const Row(
+                        children: [
+                          Icon(
+                            Icons.music_note,
+                            color: Colors.black,
+                            size: 50,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
                             'Participer à l’expérience BrainMusic',
                             style: TextStyle(
                                 color: Colors.black,
@@ -89,15 +95,15 @@ class ExperiencePage extends StatelessWidget {
                                 height: 1.2,
                                 letterSpacing: 0.0001),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(
                   height: 50,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 17),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

@@ -19,10 +19,10 @@ class PageProgressIndicator extends StatelessWidget {
       children: [
         Text('Etape $currentPage sur $totalPage\n'),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
           child: LinearProgressIndicator(
             value: progressValue, // valeur entre 0.0 et 1.0
-            backgroundColor: Color(0xFF36343B),
+            backgroundColor: const Color(0xFF36343B),
             valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFD0BCFF)),
           ),
         ),
