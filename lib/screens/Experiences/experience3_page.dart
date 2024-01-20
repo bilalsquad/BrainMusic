@@ -1,9 +1,9 @@
 import 'package:app_settings/app_settings.dart';
 // import 'package:flutter_blue/flutter_blue.dart';
 import 'package:musicbrainflutter/screens/Experiences/experience4_page.dart';
+import 'package:musicbrainflutter/widgets/Experience/appbar.dart';
 import 'package:musicbrainflutter/widgets/Experience/bottombar_experience.dart';
 import '../../widgets/Experience/progression_barre.dart';
-import './../../widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
 class ExperiencePage3 extends StatelessWidget {

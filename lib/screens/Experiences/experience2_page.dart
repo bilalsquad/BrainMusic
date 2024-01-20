@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:musicbrainflutter/widgets/Experience/appbar.dart';
 import 'package:musicbrainflutter/widgets/Experience/bottombar_experience.dart';
 import 'experience3_page.dart';
 
 import '../../widgets/Bouton.dart';
 import '../../widgets/Experience/progression_barre.dart';
-import './../../widgets/appbar.dart';
 
 class ExperiencePage2 extends StatefulWidget {
   const ExperiencePage2({Key? key}) : super(key: key);

@@ -1,5 +1,4 @@
-import 'package:musicbrainflutter/widgets/appbar.dart';
-
+import '../widgets/Experience/appbar.dart';
 import '../widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 
@@ -58,18 +57,18 @@ class DonnesScreenState extends State<DonnesScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Expanded(
+                              const Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text(
+                                    Text(
                                       '19/06/2024 à 15:43',
                                       style: TextStyle(
                                         color: Color(0xFF49454F),
                                         fontSize: 12,
                                       ),
                                     ),
-                                    const Text(
+                                    Text(
                                       'Session 3',
                                       style: TextStyle(
                                         color: Color(0xFFE6E0E9),
