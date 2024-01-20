@@ -3,8 +3,6 @@ import '../widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 
 import '../models/database_helper.dart'; // Corrected import statement
-import 'profile_page.dart';
-import 'login_page.dart';
 
 class DonnesScreen extends StatefulWidget {
   @override

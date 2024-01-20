@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musicbrainflutter/screens/Experiences/experience_home_page.dart';
 import '../models/database_helper.dart';
-import 'profile_page.dart';
 import 'signup_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/Bouton.dart';
