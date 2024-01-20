@@ -10,7 +10,7 @@ class DonnesScreen extends StatefulWidget {
 }
 
 class DonnesScreenState extends State<DonnesScreen> {
-  int _currentIndex = 1;
+  //int _currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {

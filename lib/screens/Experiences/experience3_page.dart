@@ -11,7 +11,9 @@ class ExperiencePage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BotBarExp(pageSuivante: ExperiencePage4()),
+      bottomNavigationBar: BotBarExp(
+        pageSuivante: const ExperiencePage4(),
+      ),
       appBar: const AppBar1(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

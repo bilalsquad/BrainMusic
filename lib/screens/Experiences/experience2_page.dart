@@ -3,7 +3,6 @@ import 'package:musicbrainflutter/widgets/Experience/appbar.dart';
 import 'package:musicbrainflutter/widgets/Experience/bottombar_experience.dart';
 import 'experience3_page.dart';
 
-import '../../widgets/Bouton.dart';
 import '../../widgets/Experience/progression_barre.dart';
 
 class ExperiencePage2 extends StatefulWidget {
@@ -14,7 +13,14 @@ class ExperiencePage2 extends StatefulWidget {
 }
 
 class _ExperiencePage2State extends State<ExperiencePage2> {
+  // Variables de suivi d'état
   bool accepteConditions = false;
+  bool selectDate = false;
+  bool selectCountry = false;
+
+  // Variable pour stocker le ou les pays sélectionnés
+  List<String> selectedPays = [];
+
   Widget build(BuildContext context) {
     // Liste des dates de naissance
     List<String> datesDeNaissance = [
@@ -31,14 +37,16 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
     ];
 
     // Variable pour stocker l'année de naissance sélectionnée
-    String selectedYear =
+    String? selectedYear =
         'Année de naissance'; // Initialisation avec la première année
 
-    // Variable pour stocker le ou les pays sélectionnés
-    List<String> selectedPays = [];
-
     return Scaffold(
-      bottomNavigationBar: const BotBarExp(pageSuivante: ExperiencePage3()),
+      bottomNavigationBar: BotBarExp(
+        pageSuivante: ExperiencePage3(),
+        accepteConditions: accepteConditions,
+        selectCountry: selectCountry,
+        selectDate: selectDate,
+      ),
       appBar: const AppBar1(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,9 +66,6 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
                 fontSize: 14,
               ),
             ),
-          ),
-          const SizedBox(
-            height: 16,
           ),
           Container(
             width: double.infinity,
@@ -85,8 +90,15 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
                 child: DropdownButtonFormField<String>(
                   value: selectedYear,
                   onChanged: (String? newValue) {
+                    setState(() {
+                      selectedYear = newValue;
+                      if (newValue != null) {
+                        selectDate = true;
+                      } else {
+                        selectDate = false;
+                      }
+                    });
                     // Met à jour l'année sélectionnée lorsqu'elle change
-                    selectedYear = newValue!;
                   },
                   items: datesDeNaissance.map((String date) {
                     return DropdownMenuItem<String>(
@@ -113,9 +125,6 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 8,
-          ),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -136,9 +145,14 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
                 ),
                 child: DropdownButtonFormField<String>(
                   value: selectedPays.isEmpty ? null : selectedPays.first,
+                  decoration: InputDecoration(
+                    // Utilisez le hint pour afficher les éléments sélectionnés lorsque le menu est fermé.
+                    hintText: selectedPays.isEmpty
+                        ? 'Culture'
+                        : selectedPays.join(', '),
+                  ),
                   onChanged: (String? newValue) {
                     setState(() {
-                      // Met à jour les pays sélectionnés lorsqu'ils changent
                       if (newValue != null) {
                         selectedPays = [newValue];
                       } else {
@@ -154,25 +168,35 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
                     ...pays.map((String pays) {
                       return DropdownMenuItem<String>(
                         value: pays,
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              value: selectedPays.contains(pays),
-                              onChanged: (bool? checked) {
-                                setState(() {
-                                  if (checked ?? false) {
-                                    selectedPays.add(pays);
-                                  } else {
-                                    selectedPays.remove(pays);
-                                  }
-                                });
-                              },
-                            ),
-                            Text(pays),
-                          ],
+                        child: StatefulBuilder(
+                          // Utilisez un StatefulBuilder pour reconstruire uniquement le menu déroulant.
+                          builder: (BuildContext context,
+                              StateSetter dropDownState) {
+                            return Row(
+                              children: [
+                                Checkbox(
+                                  value: selectedPays.contains(pays),
+                                  onChanged: (bool? checked) {
+                                    dropDownState(() {
+                                      if (checked ?? false) {
+                                        selectedPays.add(pays);
+                                        selectCountry = true;
+                                      } else {
+                                        selectedPays.remove(pays);
+                                        selectCountry = false;
+                                      }
+                                    });
+                                    // Vous devriez également mettre à jour l'état global du widget ici.
+                                    setState(() {});
+                                  },
+                                ),
+                                Text(pays),
+                              ],
+                            );
+                          },
                         ),
                       );
-                    }),
+                    }).toList(),
                   ],
                 ),
               ),
@@ -204,24 +228,8 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
           const SizedBox(
             height: 25,
           ),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: GenericButton(
-              buttonText: 'Valider mes Informations ',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ExperiencePage3(),
-                  ),
-                );
-              },
-              buttonTextColor: const Color(0xFF381E72),
-            ),
-          ),
           const SizedBox(
-            height: 234,
+            height: 100,
           ),
           const PageProgressIndicator(
             currentPage: 2,

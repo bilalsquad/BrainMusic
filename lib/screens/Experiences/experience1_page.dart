@@ -9,9 +9,9 @@ class ExperiencePage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        appBar: AppBar1(),
-        body: Padding(
+    return Scaffold(
+        appBar: const AppBar1(),
+        body: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +45,7 @@ class ExperiencePage1 extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BotBarExp(
-          pageSuivante: ExperiencePage2(),
+          pageSuivante: const ExperiencePage2(),
         ));
   }
 }

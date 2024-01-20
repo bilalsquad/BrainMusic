@@ -28,7 +28,7 @@ class _ExperiencePage6State extends State<ExperiencePage6>
     audioPlayer = AudioPlayer();
     _initializeAudioPlayer();
     _startTimer();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   void _initializeAudioPlayer() {
@@ -108,7 +108,7 @@ class _ExperiencePage6State extends State<ExperiencePage6>
   @override
   void dispose() {
     audioPlayer.dispose();
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
