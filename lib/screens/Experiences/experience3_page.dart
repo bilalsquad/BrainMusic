@@ -26,13 +26,14 @@ class ExperiencePage3 extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: const Text(
-                    'Veuillez activer le bluetooth afin de vous connecter au dispositif.',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                    ),
-                    textAlign: TextAlign.center),
+                  'Veuillez activer le bluetooth afin de vous connecter au dispositif.',
+                  style: TextStyle(
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
               const SizedBox(
                 height: 20,

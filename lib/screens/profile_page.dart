@@ -1,3 +1,4 @@
+import '../services/valideurInput.dart';
 import '../widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 import '../models/database_helper.dart'; // Importer le fichier database_helper.dart
@@ -229,175 +230,230 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> _showPasswordEditDialog(BuildContext context, String label,
       String currentValue, int userId) async {
-    TextEditingController controller =
-        TextEditingController(); // No initial value
-    TextEditingController controller2 =
-        TextEditingController(); // No initial value
-    TextEditingController controller3 =
-        TextEditingController(); // No initial value
+    TextEditingController controller = TextEditingController();
+    TextEditingController controller2 = TextEditingController();
+    TextEditingController controller3 = TextEditingController();
 
     String mdp = '$label';
     String hintText = 'Nouveau $label';
     String confirmHintText = 'Confirmer $label';
 
+    String ancientPasswordError = '';
+    String newPasswordError = '';
+    String confirmPasswordError = '';
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return Center(
-          child: Container(
-            width: 402.0,
-            height: 440.0,
-            child: AlertDialog(
-              backgroundColor: const Color(0xFF1d1b20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28.0), // Rayon de 100px
-              ),
-              title: Text(
-                'Modifier $label',
-                style: const TextStyle(
-                  color: Colors.white, // Set the text color here
-                ),
-              ),
-              content: SingleChildScrollView(
-                child: ListBody(
-                  children: <Widget>[
-                    // Pour le mot de passe, afficher les champs de confirmation
-                    TextFormField(
-                      controller: controller,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: mdp,
-                        hintStyle: const TextStyle(color: Colors.white54),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.lock,
-                          color: Color(0xFFCAC4D0),
-                        ),
-                      ),
-                      style: const TextStyle(color: Colors.white),
-                      keyboardType: TextInputType.emailAddress,
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Center(
+              child: Container(
+                width: 402.0,
+                height: 440.0,
+                child: AlertDialog(
+                  backgroundColor: const Color(0xFF1d1b20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(28.0),
+                  ),
+                  title: Text(
+                    'Modifier $label',
+                    style: const TextStyle(
+                      color: Colors.white,
                     ),
+                  ),
+                  content: SingleChildScrollView(
+                    child: ListBody(
+                      children: <Widget>[
+                        TextFormField(
+                          controller: controller,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: mdp,
+                            hintStyle: const TextStyle(color: Colors.white54),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.lock,
+                              color: Color(0xFFCAC4D0),
+                            ),
+                          ),
+                          style: const TextStyle(color: Colors.white),
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        const SizedBox(height: 15),
 
-                    const SizedBox(height: 15), // Espace de 15 entre les champs
-                    TextFormField(
-                      controller: controller2,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: hintText,
-                        hintStyle: const TextStyle(color: Colors.white54),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                        // Afficher le message d'erreur pour l'ancien mot de passe
+                        if (ancientPasswordError.isNotEmpty)
+                          Text(
+                            ancientPasswordError,
+                            style: TextStyle(
+                              color: Color(0xFFF2B8B5),
+                              fontSize: 12.0,
+                            ),
+                          ),
+
+                        const SizedBox(height: 15),
+                        TextFormField(
+                          controller: controller2,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: hintText,
+                            hintStyle: const TextStyle(color: Colors.white54),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.lock,
+                              color: Color(0xFFCAC4D0),
+                            ),
+                          ),
+                          style: const TextStyle(color: Colors.white),
+                          keyboardType: TextInputType.emailAddress,
                         ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
+                        const SizedBox(height: 15),
+
+                        // Afficher le message d'erreur pour le nouveau mot de passe
+                        if (newPasswordError.isNotEmpty)
+                          Text(
+                            newPasswordError,
+                            style: TextStyle(
+                              color: Color(0xFFF2B8B5),
+                              fontSize: 12.0,
+                            ),
+                          ),
+
+                        const SizedBox(height: 15),
+                        TextFormField(
+                          controller: controller3,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: confirmHintText,
+                            hintStyle: const TextStyle(color: Colors.white54),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.lock,
+                              color: Color(0xFFCAC4D0),
+                            ),
+                          ),
+                          style: const TextStyle(color: Colors.white),
+                          keyboardType: TextInputType.emailAddress,
                         ),
-                        prefixIcon: const Icon(
-                          Icons.lock,
-                          color: Color(0xFFCAC4D0),
-                        ),
-                      ),
-                      style: const TextStyle(color: Colors.white),
-                      keyboardType: TextInputType.emailAddress,
+
+                        const SizedBox(height: 15),
+
+                        // Afficher le message d'erreur pour la confirmation du mot de passe
+                        if (confirmPasswordError.isNotEmpty)
+                          Text(
+                            confirmPasswordError,
+                            style: TextStyle(
+                              color: Color(0xFFF2B8B5),
+                              fontSize: 12.0,
+                            ),
+                          ),
+                      ],
                     ),
-
-                    const SizedBox(height: 15), // Espace de 15 entre les champs
-                    TextFormField(
-                      controller: controller3,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: confirmHintText,
-                        hintStyle: const TextStyle(color: Colors.white54),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.lock,
-                          color: Color(0xFFCAC4D0),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(
+                        'Annuler',
+                        style: TextStyle(
+                          color: Color(0xFFCCC2DC),
                         ),
                       ),
-                      style: const TextStyle(color: Colors.white),
-                      keyboardType: TextInputType.emailAddress,
+                    ),
+                    TextButton(
+                      child: const Text(
+                        'Sauvegarder',
+                        style: TextStyle(
+                          color: Color(0xFFD0BCFF),
+                        ),
+                      ),
+                      onPressed: () async {
+                        String ancientPassword = controller.text;
+                        String newPassword = controller2.text;
+                        String confirmPassword = controller3.text;
+
+                        // Mettez à jour la base de données
+                        DatabaseHelper databaseHelper = DatabaseHelper();
+
+                        Future<int?> getSavedUserId() async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          return prefs.getInt('userId');
+                        }
+
+                        int? userId = await getSavedUserId();
+
+                        if (userId != null) {
+                          Map<String, dynamic>? userData =
+                              await databaseHelper.getUserById(userId);
+
+                          if (newPassword != confirmPassword) {
+                            setState(() {
+                              confirmPasswordError =
+                                  'Les mots de passe ne correspondent pas';
+                              newPasswordError =
+                                  ''; // Réinitialisez le message d'erreur pour le nouveau mot de passe
+                              ancientPasswordError =
+                                  ''; // Réinitialisez le message d'erreur pour l'ancien mot de passe
+                            });
+                          } else if (userData != null) {
+                            String password = userData['password'];
+
+                            if (ancientPassword == password) {
+                              setState(() {
+                                ancientPasswordError = '';
+                                newPasswordError = '';
+                                confirmPasswordError = '';
+                              });
+
+                              print(
+                                  'Ancien mot de passe correct. Nouveau mot de passe: $newPassword');
+                              await databaseHelper.updateUser(
+                                  userId, userData['email'], newPassword);
+                              // Fermez le dialogue
+                              Navigator.of(context).pop();
+                            } else {
+                              setState(() {
+                                ancientPasswordError =
+                                    'Mot de passe actuel incorrect';
+                                newPasswordError =
+                                    ''; // Réinitialisez le message d'erreur pour le nouveau mot de passe
+                                confirmPasswordError =
+                                    ''; // Réinitialisez le message d'erreur pour la confirmation du mot de passe
+                              });
+                            }
+                          } else {
+                            print(
+                                'Aucun utilisateur trouvé avec l\'ID $userId');
+                            return;
+                          }
+                        }
+                      },
                     ),
                   ],
                 ),
               ),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'Annuler',
-                    style: TextStyle(
-                      color: Color(0xFFCCC2DC), // Set the text color here
-                    ),
-                  ),
-                ),
-                TextButton(
-                  child: const Text(
-                    'Sauvegarder',
-                    style: TextStyle(
-                      color: Color(0xFFD0BCFF), // Set the text color here
-                    ),
-                  ),
-                  onPressed: () async {
-                    String Ancient = controller.text;
-                    String Nouveau = controller2.text;
-                    String CNouveau = controller3.text;
-
-// Mettez à jour la base de données
-                    DatabaseHelper databaseHelper = DatabaseHelper();
-
-                    Future<int?> getSavedUserId() async {
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      return prefs.getInt('userId');
-                    }
-
-                    int? userId = await getSavedUserId();
-
-                    if (userId != null) {
-                      Map<String, dynamic>? userData =
-                          await databaseHelper.getUserById(userId);
-
-                      if (Nouveau != CNouveau) {
-                        print('Les mots de passe ne correspondent pas');
-                      } else if (userData != null) {
-                        // Utilisez les propriétés de l'utilisateur comme nécessaire
-                        String password = userData['password'];
-
-                        if (Ancient == password) {
-                          print(
-                              'Ancien mot de passe correct. Nouveau mot de passe: $Nouveau');
-                          await databaseHelper.updateUser(
-                              userId, userData['email'], Nouveau);
-                          // Fermez le dialogue
-                          Navigator.of(context).pop();
-                        } else {
-                          print('Mot de passe actuel incorrect');
-                          return;
-                        }
-                      } else {
-                        print('Aucun utilisateur trouvé avec l\'ID $userId');
-                        return;
-                      }
-                    }
-                    // Mettez à jour la base de données
-                    // await databaseHelper.updateUser(userId, newValue, label);
-                  },
-                ),
-              ],
-            ),
-          ),
+            );
+          },
         );
       },
     );
@@ -410,175 +466,171 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     String mdp = 'Mot de passe';
     String newEmailHint = 'Nouvel $label';
-    String wrongPassword = 'Mot de passe incorrect';
-    String invalidEmail = 'Veuillez renseigner une adresse mail correcte';
-    bool _emailErrorMessage = false;
-    bool _passwordErrorMessage = false;
+
+    String passwordError = ''; // Message d'erreur pour le mot de passe
+    String emailError = ''; // Message d'erreur pour l'email
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return Center(
-          child: Container(
-            width: 402.0,
-            height: 440.0,
-            child: AlertDialog(
-              backgroundColor: const Color(0xFF1d1b20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28.0), // Rayon de 100px
-              ),
-              title: Text(
-                'Modifier $label',
-                style: const TextStyle(
-                  color: Colors.white, // Set the text color here
-                ),
-              ),
-              content: SingleChildScrollView(
-                child: ListBody(
-                  children: <Widget>[
-                    // Pour le mot de passe, afficher les champs de confirmation
-                    TextFormField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: mdp,
-                        hintStyle: const TextStyle(color: Colors.white54),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.lock,
-                          color: Color(0xFFCAC4D0),
-                        ),
-                      ),
-                      style: const TextStyle(color: Colors.white),
-                      keyboardType: TextInputType.emailAddress,
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Center(
+              child: Container(
+                width: 402.0,
+                height: 440.0,
+                child: AlertDialog(
+                  backgroundColor: const Color(0xFF1d1b20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(28.0),
+                  ),
+                  title: Text(
+                    'Modifier $label',
+                    style: const TextStyle(
+                      color: Colors.white,
                     ),
-                    const SizedBox(height: 5), // Espace de 15 entre les champs
+                  ),
+                  content: SingleChildScrollView(
+                    child: ListBody(
+                      children: <Widget>[
+                        TextFormField(
+                          controller: passwordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: mdp,
+                            hintStyle: const TextStyle(color: Colors.white54),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.lock,
+                              color: Color(0xFFCAC4D0),
+                            ),
+                          ),
+                          style: const TextStyle(color: Colors.white),
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        const SizedBox(height: 5),
 
-                    if (_passwordErrorMessage == true)
-                      Text(
-                        wrongPassword,
-                        style: TextStyle(
-                          color: Color(0xFFF2B8B5),
-                          fontSize: 12,
+                        // Afficher le message d'erreur pour le mot de passe
+                        if (passwordError.isNotEmpty)
+                          Text(
+                            passwordError,
+                            style: TextStyle(
+                              color: Color(0xFFF2B8B5),
+                              fontSize: 12.0,
+                            ),
+                          ),
+
+                        const SizedBox(height: 5),
+                        TextFormField(
+                          controller: newEmailController,
+                          decoration: InputDecoration(
+                            hintText: newEmailHint,
+                            hintStyle: const TextStyle(color: Colors.white54),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.person,
+                              color: Color(0xFFCAC4D0),
+                            ),
+                          ),
+                          style: const TextStyle(color: Colors.white),
+                          keyboardType: TextInputType.emailAddress,
                         ),
-                      ),
-                    const SizedBox(height: 5), // Espace de 15 entre les champs
-                    TextFormField(
-                      controller: newEmailController,
-                      decoration: InputDecoration(
-                        hintText: newEmailHint,
-                        hintStyle: const TextStyle(color: Colors.white54),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.person,
-                          color: Color(0xFFCAC4D0),
-                        ),
-                      ),
-                      style: const TextStyle(color: Colors.white),
-                      keyboardType: TextInputType.emailAddress,
+                        const SizedBox(height: 5),
+
+                        // Afficher le message d'erreur pour l'email
+                        if (emailError.isNotEmpty)
+                          Text(
+                            emailError,
+                            style: TextStyle(
+                              color: Color(0xFFF2B8B5),
+                              fontSize: 12.0,
+                            ),
+                          ),
+                      ],
                     ),
-                    const SizedBox(height: 5), // Espace de 15 entre les champs
-
-                    if (_emailErrorMessage == true)
-                      Text(
-                        invalidEmail,
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(
+                        'Annuler',
                         style: TextStyle(
-                          color: Color(0xFFF2B8B5),
-                          fontSize: 12,
+                          color: Color(0xFFCCC2DC),
                         ),
                       ),
+                    ),
+                    TextButton(
+                      child: const Text(
+                        'Sauvegarder',
+                        style: TextStyle(
+                          color: Color(0xFFD0BCFF),
+                        ),
+                      ),
+                      onPressed: () async {
+                        String enteredPassword = passwordController.text;
+                        String newEmail = newEmailController.text;
+
+                        // Mettez à jour la base de données
+                        DatabaseHelper databaseHelper = DatabaseHelper();
+
+                        Future<int?> getSavedUserId() async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          return prefs.getInt('userId');
+                        }
+
+                        int? userId = await getSavedUserId();
+
+                        if (userId != null) {
+                          Map<String, dynamic>? userData =
+                              await databaseHelper.getUserById(userId);
+                          if (userData != null) {
+                            if (enteredPassword != userData['password']) {
+                              setState(() {
+                                passwordError = 'Mot de passe incorrect';
+                                // Ne réinitialisez pas le message d'erreur pour l'email
+                              });
+                            } else if (!isValidEmail(newEmail)) {
+                              setState(() {
+                                emailError =
+                                    'Veuillez renseigner une adresse mail correcte';
+                                // Ne réinitialisez pas le message d'erreur pour le mot de passe
+                              });
+                            } else {
+                              // Réinitialiser les messages d'erreur
+                              setState(() {
+                                passwordError = '';
+                                emailError = '';
+                              });
+
+                              await databaseHelper.updateUser(
+                                  userId, newEmail, userData['password']);
+                              Navigator.of(context).pop();
+                            }
+                          }
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'Annuler',
-                    style: TextStyle(
-                      color: Color(0xFFCCC2DC), // Set the text color here
-                    ),
-                  ),
-                ),
-                TextButton(
-                  child: const Text(
-                    'Sauvegarder',
-                    style: TextStyle(
-                      color: Color(0xFFD0BCFF), // Set the text color here
-                    ),
-                  ),
-                  onPressed: () async {
-                    String enteredPassword = passwordController.text;
-                    String newEmail = newEmailController.text;
-
-                    // Mettez à jour la base de données
-                    DatabaseHelper databaseHelper = DatabaseHelper();
-
-                    Future<int?> getSavedUserId() async {
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      return prefs.getInt('userId');
-                    }
-
-                    int? userId = await getSavedUserId();
-
-                    if (userId != null) {
-                      Map<String, dynamic>? userData =
-                          await databaseHelper.getUserById(userId);
-                      if (userData != null) {
-                        if (enteredPassword != userData['password']) {
-                          setState(() {
-                            _passwordErrorMessage = true;
-                            _emailErrorMessage =
-                                false; // Réinitialisez le message d'erreur
-                            print("Mot de passe incorrect");
-                          });
-                        } else if (!isValidEmail(newEmail)) {
-                          setState(() {
-                            _emailErrorMessage = true;
-                            _passwordErrorMessage =
-                                false; // Réinitialisez le message d'erreur
-                            print(
-                                "Veuillez renseigner une adresse mail correcte");
-                          });
-                        } else {
-                          setState(() {
-                            _emailErrorMessage =
-                                false; // Réinitialisez le message d'erreur
-                            _passwordErrorMessage = false;
-                            print("Mot de passe correct");
-                          });
-                          await databaseHelper.updateUser(
-                              userId, newEmail, userData['password']);
-                          Navigator.of(context).pop();
-                        }
-                      }
-                    }
-                  },
-                ),
-              ],
-            ),
-          ),
+            );
+          },
         );
       },
     );
-  }
-
-  bool isValidEmail(String email) {
-    // Vérifiez si l'e-mail est valide, vous pouvez ajouter une logique plus avancée si nécessaire
-    return RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
-        .hasMatch(email);
   }
 }

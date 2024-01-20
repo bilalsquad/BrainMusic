@@ -61,6 +61,15 @@ class DatabaseHelper {
     );
   }
 
+  Future<List<Map<String, dynamic>>> getSessionsForUser(int userId) async {
+    final Database db = await database;
+    return await db.query('sessions',
+        where: 'user_id = ?',
+        whereArgs: [userId],
+        orderBy:
+            'date_created DESC'); // Vous pouvez modifier l'ordre de tri selon vos besoins
+  }
+
   Future<void> insertUser(String email, String password) async {
     final Database db = await database;
     await db.insert(

@@ -7,10 +7,10 @@ import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 import '../screens/login_page.dart';
 import 'package:path_provider/path_provider.dart';
 
-Future<String> getDatabasePath() async {
-  final directory = await getApplicationDocumentsDirectory();
-  return join(directory.path, 'your_database.db');
-}
+// Future<String> getDatabasePath() async {
+//   final directory = await getApplicationDocumentsDirectory();
+//   return join(directory.path, 'your_database.db');
+// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
