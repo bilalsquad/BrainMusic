@@ -63,51 +63,50 @@ class ExperiencePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
                   ),
-                  child: Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Colors.transparent, // Couleur de fond du bouton
-                        shadowColor: Colors.transparent, // Enlève l'ombre
-                      ),
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ExperiencePage1()),
-                      ),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.music_note,
-                            color: Colors.black,
-                            size: 50,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Participer à l’expérience\n BrainMusic',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 22,
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.w400,
-                                height: 1.2,
-                                letterSpacing: 0.0001),
-                          ),
-                        ],
-                      ),
+
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          Colors.transparent, // Couleur de fond du bouton
+                      shadowColor: Colors.transparent, // Enlève l'ombre
+                    ),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ExperiencePage1()),
+                    ),
+                    child: const Row(
+                      children: [
+                        Icon(
+                          Icons.music_note,
+                          color: Colors.black,
+                          size: 50,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Participer à l’expérience\n BrainMusic',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 22,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w400,
+                              height: 1.2,
+                              letterSpacing: 0.0001),
+                        ),
+                      ],
                     ),
                   ),
                 ),
                 const SizedBox(
                   height: 50,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 17),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text('Qu’est-ce que BrainMusic ?',
                           style: TextStyle(
                               color: Colors.white,

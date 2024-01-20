@@ -158,7 +158,15 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
                           children: [
                             Checkbox(
                               value: selectedPays.contains(pays),
-                              onChanged: (_) {},
+                              onChanged: (bool? checked) {
+                                setState(() {
+                                  if (checked ?? false) {
+                                    selectedPays.add(pays);
+                                  } else {
+                                    selectedPays.remove(pays);
+                                  }
+                                });
+                              },
                             ),
                             Text(pays),
                           ],
