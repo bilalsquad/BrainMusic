@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 
 class BotBarExp extends StatelessWidget {
-  final Widget pageSuivante;
-  bool? accepteConditions;
-  bool? selectDate;
-  bool? selectCountry;
-
-  BotBarExp(
-      {Key? key,
-      required this.pageSuivante,
-      this.selectDate,
-      this.selectCountry,
-      this.accepteConditions})
-      : super(key: key);
+  final VoidCallback onPressed;
+  BotBarExp({
+    Key? key,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,40 +30,7 @@ class BotBarExp extends StatelessWidget {
                 ),
               )),
           ElevatedButton(
-              onPressed: () => {
-                    if (accepteConditions != null)
-                      {
-                        if (accepteConditions == true &&
-                            selectDate == true &&
-                            selectCountry == true)
-                          {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => pageSuivante))
-                          }
-                        else
-                          {
-                            // Afficher un SnackBar ou un dialogue
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                    'Veuillez sélectionner au moins un pays, une année et accepter les conditions.'),
-                              ),
-                            )
-                          },
-                        print(accepteConditions),
-                        print(selectDate),
-                        print(selectCountry)
-                      }
-                    else
-                      {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => pageSuivante))
-                      }
-                  },
+              onPressed: onPressed,
               child: const Text(
                 'Suivant',
                 textAlign: TextAlign.center,

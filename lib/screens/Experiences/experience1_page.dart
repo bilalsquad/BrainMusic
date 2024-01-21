@@ -9,6 +9,11 @@ class ExperiencePage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _onNextPressed() async {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const ExperiencePage2()));
+    }
+
     return Scaffold(
         appBar: const AppBar1(),
         body: const Padding(
@@ -45,7 +50,7 @@ class ExperiencePage1 extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BotBarExp(
-          pageSuivante: const ExperiencePage2(),
+          onPressed: _onNextPressed,
         ));
   }
 }
