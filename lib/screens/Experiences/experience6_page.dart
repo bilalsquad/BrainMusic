@@ -16,11 +16,13 @@ class ExperiencePage6 extends StatefulWidget {
 class _ExperiencePage6State extends State<ExperiencePage6>
     with WidgetsBindingObserver {
   bool _showText = true;
-  bool showText2 = false;
+  bool _showText2 = false;
+
   bool _showTimer = false;
   int _timerSeconds = 60 * 25 +
       120; // 30 minutes  le +5 sec c'est pour el temps de fermer les yeux
   int _timerSeconds2 = 10;
+
   late AudioPlayer audioPlayer;
   bool _isApplicationPaused = false;
 
@@ -30,7 +32,7 @@ class _ExperiencePage6State extends State<ExperiencePage6>
     audioPlayer = AudioPlayer();
     _initializeAudioPlayer();
     _startTimer();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   void _initializeAudioPlayer() {
@@ -47,9 +49,23 @@ class _ExperiencePage6State extends State<ExperiencePage6>
         setState(() {
           // Mettre à jour l'état pour cacher le texte
           _showText = false;
+          _showText2 =
+              true; // Set _showText2 to true before starting the 10-second timer
+        });
+      }
+      _startTimer2();
+    });
+
+    Future.delayed(const Duration(seconds: 16), () {
+      if (mounted) {
+        setState(() {
+          // Mettre à jour l'état pour cacher le texte
+          _showText = false;
+
           _showTimer = true;
           _startTimer30M();
         });
+        // Start the 10-second timer after updating the state
       }
     });
 
@@ -89,7 +105,7 @@ class _ExperiencePage6State extends State<ExperiencePage6>
         if (mounted) {
           setState(() {
             // Mettre à jour l'état pour cacher le minuteur
-            showText2 = false;
+            _showText2 = false;
           });
         }
         // Naviguer vers la nouvelle page lorsque le minuteur se termine
@@ -137,7 +153,7 @@ class _ExperiencePage6State extends State<ExperiencePage6>
   @override
   void dispose() {
     audioPlayer.dispose();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     super.dispose();
   }
 
@@ -172,6 +188,17 @@ class _ExperiencePage6State extends State<ExperiencePage6>
                   fontSize: 28,
                 ),
               ),
+            if (_showText2)
+              Text(
+                "L'experience commence dans,\n" +
+                    '${_timerSeconds2 ~/ 60}:${(_timerSeconds2 % 60).toString().padLeft(2, '0')}',
+                style: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 30,
+                ),
+              ),
+
             const SizedBox(height: 20), // Espacement
             if (_showTimer)
               Text(
