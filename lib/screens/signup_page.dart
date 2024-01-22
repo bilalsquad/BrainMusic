@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/database_helper.dart'; // Importer le fichier database_helper.dart
 import '../widgets/Bouton.dart';
+import '../services/valideurInput.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -11,6 +12,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

@@ -20,6 +20,8 @@ class _ExperiencePage3State extends State<ExperiencePage3> {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const ExperiencePage4()));
     } else {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const ExperiencePage4()));
       print(state);
       // Afficher un SnackBar ou un dialogue
       ScaffoldMessenger.of(context).showSnackBar(

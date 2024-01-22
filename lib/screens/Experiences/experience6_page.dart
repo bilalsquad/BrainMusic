@@ -16,9 +16,11 @@ class ExperiencePage6 extends StatefulWidget {
 class _ExperiencePage6State extends State<ExperiencePage6>
     with WidgetsBindingObserver {
   bool _showText = true;
+  bool showText2 = false;
   bool _showTimer = false;
   int _timerSeconds = 60 * 25 +
       120; // 30 minutes  le +5 sec c'est pour el temps de fermer les yeux
+  int _timerSeconds2 = 10;
   late AudioPlayer audioPlayer;
   bool _isApplicationPaused = false;
 
@@ -63,9 +65,7 @@ class _ExperiencePage6State extends State<ExperiencePage6>
 
   void _playMusic() {
     // Remplacez 'chemin_vers_votre_fichier.mp3' par le chemin réel de votre fichier MP3
-    audioPlayer
-        .play(AssetSource('assets/BrainMusiqueExp.mp3'))
-        .catchError((error) {
+    audioPlayer.play(AssetSource('BrainMusiqueExp.mp3')).catchError((error) {
       print('Erreur de lecture audio: $error');
     });
   }
@@ -89,7 +89,7 @@ class _ExperiencePage6State extends State<ExperiencePage6>
         if (mounted) {
           setState(() {
             // Mettre à jour l'état pour cacher le minuteur
-            _showText2 = false;
+            showText2 = false;
           });
         }
         // Naviguer vers la nouvelle page lorsque le minuteur se termine
