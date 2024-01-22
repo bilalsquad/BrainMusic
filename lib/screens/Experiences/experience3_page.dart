@@ -1,9 +1,9 @@
+import 'package:flutter_blue/flutter_blue.dart';
 import 'package:musicbrainflutter/screens/Experiences/experience4_page.dart';
 import 'package:musicbrainflutter/widgets/Experience/appbar.dart';
 import 'package:musicbrainflutter/widgets/Experience/bottombar_experience.dart';
 import '../../widgets/Experience/progression_barre.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
 
 class ExperiencePage3 extends StatefulWidget {
   const ExperiencePage3({super.key});
