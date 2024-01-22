@@ -69,7 +69,7 @@ class _ExperiencePage6State extends State<ExperiencePage6>
       }
     });
 
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 135), () {
       if (mounted) {
         setState(() {
           // Mettre à jour l'état pour lancer la musique
@@ -109,7 +109,6 @@ class _ExperiencePage6State extends State<ExperiencePage6>
           });
         }
         // Naviguer vers la nouvelle page lorsque le minuteur se termine
-
       } else {
         updateTimer2();
       }
