@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musicbrainflutter/widgets/Experience/bottombar_experience.dart';
-import '../../widgets/Experience/appbar.dart';
+import '../../widgets/appbar.dart';
 import '../../widgets/Experience/progression_barre.dart';
 import './experience2_page.dart';
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
 
-import '../../widgets/Experience/appbar.dart';
+import '../../widgets/appbar.dart';
 import 'experience7_page.dart';
 
 class ExperiencePage6 extends StatefulWidget {

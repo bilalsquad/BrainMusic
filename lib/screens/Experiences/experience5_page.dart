@@ -1,6 +1,6 @@
 // ... Autres importations
 
-import '../../widgets/Experience/appbar.dart';
+import '../../widgets/appbar.dart';
 
 import 'package:flutter/material.dart';
 import 'experience6_page.dart';
