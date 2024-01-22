@@ -51,7 +51,7 @@ class _ExperiencePage6State extends State<ExperiencePage6>
       }
     });
 
-    Future.delayed(const Duration(seconds: 60 * 2), () {
+    Future.delayed(const Duration(seconds: 135), () {
       if (mounted) {
         setState(() {
           // Mettre à jour l'état pour lancer la musique
@@ -67,6 +67,35 @@ class _ExperiencePage6State extends State<ExperiencePage6>
         .play(AssetSource('assets/BrainMusiqueExp.mp3'))
         .catchError((error) {
       print('Erreur de lecture audio: $error');
+    });
+  }
+
+  void _startTimer2() {
+    const oneSecond = Duration(seconds: 1);
+
+    void updateTimer2() {
+      if (mounted) {
+        setState(() {
+          if (_timerSeconds2 > 0) {
+            _timerSeconds2--;
+          }
+        });
+      }
+    }
+
+    Timer.periodic(oneSecond, (Timer timer) {
+      if (_timerSeconds2 <= 0) {
+        timer.cancel();
+        if (mounted) {
+          setState(() {
+            // Mettre à jour l'état pour cacher le minuteur
+            _showText2 = false;
+          });
+        }
+        // Naviguer vers la nouvelle page lorsque le minuteur se termine
+      } else {
+        updateTimer2();
+      }
     });
   }
 
