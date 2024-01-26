@@ -1,9 +1,9 @@
 import 'package:flutter_blue/flutter_blue.dart';
-import 'package:musicbrainflutter/screens/Experiences/experience4_page.dart';
+import 'package:flutter/material.dart';
+import 'package:musicbrainflutter/screens/Experiences/experience5_page.dart';
 import 'package:musicbrainflutter/widgets/appbar.dart';
 import 'package:musicbrainflutter/widgets/Experience/bottombar_experience.dart';
 import '../../widgets/Experience/progression_barre.dart';
-import 'package:flutter/material.dart';
 
 class ExperiencePage3 extends StatefulWidget {
   const ExperiencePage3({super.key});
@@ -13,27 +13,13 @@ class ExperiencePage3 extends StatefulWidget {
 }
 
 class _ExperiencePage3State extends State<ExperiencePage3> {
-  void onNextPressed() async {
-    final BluetoothState state = await FlutterBlue.instance.state.first;
-
-    if (state == BluetoothState.on) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const ExperiencePage4()));
-    } else {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const ExperiencePage4()));
-      print(state);
-      // Afficher un SnackBar ou un dialogue
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Veuillez activer votre bluetooth'),
-        ),
-      );
-    }
-  }
-
+  final String targetDeviceId = "8BB08D8B-2443-7203-24A3-7EB499ACE1CF";
   bool isSearching = false;
+  bool deviceFound = false;
+  bool isConnected = false;
+  String statusMessage = '';
   List<BluetoothDevice> devicesList = [];
+  bool maxAttemptsReached = false; // Nouvelle variable d'état
 
   @override
   void initState() {
@@ -41,14 +27,16 @@ class _ExperiencePage3State extends State<ExperiencePage3> {
     _listenForBluetoothState();
   }
 
+  void _updateStatus(String message) {
+    setState(() {
+      statusMessage = message;
+    });
+  }
+
   void _listenForBluetoothState() {
     FlutterBlue.instance.state.listen((state) {
       if (state == BluetoothState.off) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Veuillez activer votre Bluetooth.'),
-          ),
-        );
+        _showSnackbar('Veuillez activer votre Bluetooth.');
       } else if (state == BluetoothState.on) {
         _searchForDevices();
       }
@@ -58,26 +46,98 @@ class _ExperiencePage3State extends State<ExperiencePage3> {
   void _searchForDevices() {
     setState(() {
       isSearching = true;
+      deviceFound = false;
     });
 
-    FlutterBlue.instance.startScan(timeout: Duration(seconds: 4));
+    _scanForDevices();
+  }
+
+  void _scanForDevices() {
+    FlutterBlue.instance.startScan(timeout: Duration(seconds: 10));
 
     FlutterBlue.instance.scanResults.listen((results) {
       for (ScanResult result in results) {
         final device = result.device;
-        if (!devicesList.any((d) => d.id == device.id)) {
+        if (device.id.toString() == targetDeviceId) {
+          if (!mounted) return;
           setState(() {
             devicesList.add(device);
+            deviceFound = true;
+            _connectToDevice(device);
           });
+          FlutterBlue.instance.stopScan();
+          return;
         }
       }
-    });
-
-    FlutterBlue.instance.stopScan().then((_) {
+    }).onDone(() {
+      if (!mounted) return;
       setState(() {
-        isSearching = false;
+        if (!deviceFound) {
+          // Si l'appareil n'est pas trouvé, recommence la recherche
+          _scanForDevices();
+        } else {
+          isSearching = false;
+        }
       });
     });
+  }
+
+  void _connectToDevice(BluetoothDevice device) async {
+    int attempts = 0;
+    maxAttemptsReached = false;
+
+    while (attempts < 3 && !isConnected) {
+      try {
+        // Tentative de connexion
+        await device.connect();
+        if (!mounted) return;
+        setState(() {
+          isConnected = true;
+          _updateStatus('Votre appareil est bien connecté');
+        });
+        break;
+      } catch (e) {
+        attempts++;
+        if (attempts >= 3) {
+          if (!mounted) return;
+          setState(() {
+            maxAttemptsReached = true;
+            _updateStatus('Échec de la connexion après 3 tentatives');
+          });
+        } else {
+          if (!mounted) return;
+          _updateStatus('Tentative de reconnexion... ($attempts)');
+        }
+      }
+    }
+  }
+
+  void _retryConnection() {
+    setState(() {
+      maxAttemptsReached = false;
+      isSearching = true;
+      deviceFound = false;
+      isConnected = false;
+    });
+    _searchForDevices();
+  }
+
+  void _showSnackbar(String message) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  void onNextPressed() async {
+    final BluetoothState state = await FlutterBlue.instance.state.first;
+    if (state != BluetoothState.on) {
+      _showSnackbar('Veuillez activer votre Bluetooth.');
+    } else if (!isConnected) {
+      _showSnackbar('La connexion à l\'appareil n\'est pas établie.');
+    } else if (isConnected) {
+      print(isConnected);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const ExperiencePage5()));
+    }
   }
 
   @override
@@ -92,50 +152,62 @@ class _ExperiencePage3State extends State<ExperiencePage3> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(
-              height: 70,
-            ),
-            if (isSearching == false)
-              Container(
-                height: 300,
-                child: Column(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      child: const Text(
-                        'Veuillez activer le bluetooth afin de vous connecter au dispositif.',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    if (isSearching) const CircularProgressIndicator(),
-                    Expanded(
-                      child: isSearching
-                          ? const Center(child: CircularProgressIndicator())
-                          : ListView.builder(
-                              itemCount: devicesList.length,
-                              itemBuilder: (context, index) {
-                                return ListTile(
-                                  title: Text(devicesList[index].name),
-                                  subtitle:
-                                      Text(devicesList[index].id.toString()),
-                                  onTap: () {
-                                    // Connectez-vous à l'appareil ou passez à l'écran suivant
-                                  },
-                                );
-                              },
+            Expanded(
+              child: Center(
+                child: isConnected
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.check_circle,
+                              color: Colors.green, size: 48, key: UniqueKey()),
+                          const SizedBox(height: 20),
+                          const Text(
+                            'Votre appareil est bien connecté',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
                             ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
-                ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      )
+                    : isSearching || !deviceFound
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                statusMessage.isEmpty
+                                    ? 'Recherche de l\'appareil...'
+                                    : statusMessage,
+                                style: const TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 20),
+                              const CircularProgressIndicator(),
+                            ],
+                          )
+                        : const Text(
+                            'Veuillez activer le bluetooth afin de vous connecter au dispositif.',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
               ),
+            ),
+            if (maxAttemptsReached) ...[
+              ElevatedButton(
+                onPressed: _retryConnection,
+                child: const Text('Voulez-vous retenter la connexion ?'),
+              ),
+            ],
             const PageProgressIndicator(
               currentPage: 3,
               totalPage: 3,

@@ -176,40 +176,47 @@ class _ExperiencePage6State extends State<ExperiencePage6>
     return Scaffold(
       appBar: const AppBar1(),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (_showText)
-              const Text(
-                'Fermer les yeux',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 28,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment
+                .center, // Centrer horizontalement les enfants
+            children: [
+              if (_showText)
+                const Text(
+                  'Fermer les yeux',
+                  style: TextStyle(
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 28,
+                  ),
+                  textAlign: TextAlign.center, // Alignement du texte
                 ),
-              ),
-            if (_showText2)
-              Text(
-                "L'experience commence dans,\n" +
-                    '${_timerSeconds2 ~/ 60}:${(_timerSeconds2 % 60).toString().padLeft(2, '0')}',
-                style: const TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 30,
+              if (_showText2)
+                Text(
+                  "L'expérience commence dans,\n" +
+                      '${_timerSeconds2 ~/ 60}:${(_timerSeconds2 % 60).toString().padLeft(2, '0')}',
+                  style: const TextStyle(
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 30,
+                  ),
+                  textAlign: TextAlign.center, // Alignement du texte
                 ),
-              ),
-
-            const SizedBox(height: 20), // Espacement
-            if (_showTimer)
-              Text(
-                '${_timerSeconds ~/ 60}:${(_timerSeconds % 60).toString().padLeft(2, '0')}',
-                style: const TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 57,
+              const SizedBox(height: 20), // Espacement
+              if (_showTimer)
+                Text(
+                  '${_timerSeconds ~/ 60}:${(_timerSeconds % 60).toString().padLeft(2, '0')}',
+                  style: const TextStyle(
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 57,
+                  ),
+                  textAlign: TextAlign.center, // Alignement du texte
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );
