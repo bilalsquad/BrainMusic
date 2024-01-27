@@ -50,52 +50,57 @@ class ExperiencePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
-                  width: 502,
-                  height: 127,
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 30), // Réduit le padding vertical
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFD0BCFF),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  child: Container(
+                    height: 100,
+                    width: MediaQuery.of(context)
+                        .size
+                        .width, // Utiliser la largeur de l'écran - marges
+                    // height: 127, // Vous pouvez aussi commenter la hauteur fixe si nécessaire
+                    // Réduit le padding vertical
+                    clipBehavior: Clip.antiAlias,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFFD0BCFF),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
 
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          Colors.transparent, // Couleur de fond du bouton
-                      shadowColor: Colors.transparent, // Enlève l'ombre
-                    ),
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ExperiencePage1()),
-                    ),
-                    child: const Row(
-                      children: [
-                        Icon(
-                          Icons.music_note,
-                          color: Colors.black,
-                          size: 50,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Participer à l’expérience\n BrainMusic',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 22,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w400,
-                              height: 1.2,
-                              letterSpacing: 0.0001),
-                        ),
-                      ],
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Colors.transparent, // Couleur de fond du bouton
+                        shadowColor: Colors.transparent, // Enlève l'ombre
+                      ),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ExperiencePage1()),
+                      ),
+                      child: const Row(
+                        children: [
+                          Icon(
+                            Icons.music_note,
+                            color: Colors.black,
+                            size: 50,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Text(
+                              'Participer à l’expérience\n BrainMusic',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 22,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.2,
+                                  letterSpacing: 0.0001),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -39,9 +39,9 @@ class ExperiencePage5 extends StatelessWidget {
                       builder: (context) => const ExperiencePage6(),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.music_note,
                         color: Colors.black,
@@ -50,15 +50,17 @@ class ExperiencePage5 extends StatelessWidget {
                       SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        'Commencer l’expérience',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 22,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w400,
-                          height: 1.2,
-                          letterSpacing: 0.0001,
+                      Expanded(
+                        child: Text(
+                          'Commencer l’expérience',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w400,
+                            height: 1.2,
+                            letterSpacing: 0.0001,
+                          ),
                         ),
                       ),
                     ],

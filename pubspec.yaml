@@ -41,6 +41,8 @@ dependencies:
   app_settings: ^5.1.1
   audioplayers: ^4.1.0
   flutter_blue: ^0.8.0
+  fl_chart: ^0.40.0 # Vérifiez la dernière version sur pub.dev
+  csv: ^5.1.1
 
 dev_dependencies:
   flutter_test:
@@ -62,3 +64,8 @@ flutter:
   assets:
     - assets/
     - assets/BrainMusiqueExp.mp3
+  plugin:
+    platforms:
+      android:
+        package: com.exemple.sdkmusejava
+        pluginClass: SdkMuseJavaPlugin

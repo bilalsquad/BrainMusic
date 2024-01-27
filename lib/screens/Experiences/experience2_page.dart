@@ -138,12 +138,15 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
                     });
                   },
                 ),
-                const Text(
-                  'J’accepte que mes données soient conservées\n pour être utilisées dans le cadre de l’expérience.',
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
+                Expanded(
+                  // Utilisation d'Expanded pour permettre au texte de s'étendre
+                  child: const Text(
+                    'J’accepte que mes données soient conservées\npour être utilisées dans le cadre de l’expérience.',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
               ],

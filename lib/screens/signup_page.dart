@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/database_helper.dart';
-import '../services/valideurInput.dart';
+import '../utils/valideurInput.dart';
 import '../widgets/Bouton.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -77,7 +77,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (!isValidEmail(value!)) {
-                        style:
                         const TextStyle(color: Color(0xFFF2B8B5));
                         return 'Veuillez renseigner une vraie adresse mail';
                       }

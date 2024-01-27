@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
+import 'package:musicbrainflutter/services/muse_listener.dart';
 
 import '../../widgets/appbar.dart';
 import 'experience7_page.dart';
@@ -17,7 +18,6 @@ class _ExperiencePage6State extends State<ExperiencePage6>
     with WidgetsBindingObserver {
   bool _showText = true;
   bool _showText2 = false;
-
   bool _showTimer = false;
   int _timerSeconds = 60 * 25 +
       120; // 30 minutes  le +5 sec c'est pour el temps de fermer les yeux
@@ -26,6 +26,8 @@ class _ExperiencePage6State extends State<ExperiencePage6>
   late AudioPlayer audioPlayer;
   bool _isApplicationPaused = false;
 
+  final MuseConnectionManager museManager = MuseConnectionManager();
+
   @override
   void initState() {
     super.initState();
@@ -33,6 +35,7 @@ class _ExperiencePage6State extends State<ExperiencePage6>
     _initializeAudioPlayer();
     _startTimer();
     WidgetsBinding.instance?.addObserver(this);
+    museManager.discoverServices();
   }
 
   void _initializeAudioPlayer() {

@@ -1,0 +1,120 @@
+{
+  "uuid": "0000fe8d-0000-1000-8000-00805f9b34fb",
+  "deviceId": "8BB08D8B-2443-7203-24A3-7EB499ACE1CF",
+  "isPrimary": true,
+  "characteristics": [
+    {
+      "uuid": "273e0001-4c4d-454d-96be-f03bac821358",
+      "deviceId": "8BB08D8B-2443-7203-24A3-7EB499ACE1CF",
+      "serviceUuid": "0000fe8d-0000-1000-8000-00805f9b34fb",
+      "secondaryServiceUuid": null,
+      "properties": {
+        "broadcast": false,
+        "read": false,
+        "writeWithoutResponse": true,
+        "write": false,
+        "notify": true,
+        "indicate": false,
+        "authenticatedSignedWrites": false,
+        "extendedProperties": false,
+        "notifyEncryptionRequired": false,
+        "indicateEncryptionRequired": false
+      },
+      "descriptors": [
+        {
+          "uuid": "00002902-0000-1000-8000-00805f9b34fb",
+          "deviceId": "8BB08D8B-2443-7203-24A3-7EB499ACE1CF",
+          "serviceUuid": "0000fe8d-0000-1000-8000-00805f9b34fb",
+          "characteristicUuid": "273e0001-4c4d-454d-96be-f03bac821358",
+          "value": [0, 0, 0, 0]
+        }
+      ],
+      "value": []
+    },
+    {
+      "uuid": "273e0008-4c4d-454d-96be-f03bac821358",
+      "deviceId": "8BB08D8B-2443-7203-24A3-7EB499ACE1CF",
+      "serviceUuid": "0000fe8d-0000-1000-8000-00805f9b34fb",
+      "secondaryServiceUuid": null,
+      "properties": {
+        "broadcast": false,
+        "read": false,
+        "writeWithoutResponse": false,
+        "write": false,
+        "notify": true,
+        "indicate": false,
+        "authenticatedSignedWrites": false,
+        "extendedProperties": false,
+        "notifyEncryptionRequired": false,
+        "indicateEncryptionRequired": false
+      },
+      "descriptors": [
+        {
+          "uuid": "00002902-0000-1000-8000-00805f9b34fb",
+          "deviceId": "8BB08D8B-2443-7203-24A3-7EB499ACE1CF",
+          "serviceUuid": "0000fe8d-0000-1000-8000-00805f9b34fb",
+          "characteristicUuid": "273e0008-4c4d-454d-96be-f03bac821358",
+          "value": [0, 0, 0, 0]
+        }
+      ],
+      "value": []
+    },
+    {
+      "uuid": "273e0009-4c4d-454d-96be-f03bac821358",
+      "deviceId": "8BB08D8B-2443-7203-24A3-7EB499ACE1CF",
+      "serviceUuid": "0000fe8d-0000-1000-8000-00805f9b34fb",
+      "secondaryServiceUuid": null,
+      "properties": {
+        "broadcast": false,
+        "read": false,
+        "writeWithoutResponse": false,
+        "write": false,
+        "notify": true,
+        "indicate": false,
+        "authenticatedSignedWrites": false,
+        "extendedProperties": false,
+        "notifyEncryptionRequired": false,
+        "indicateEncryptionRequired": false
+      },
+      "descriptors": [
+        {
+          "uuid": "00002902-0000-1000-8000-00805f9b34fb",
+          "deviceId": "8BB08D8B-2443-7203-24A3-7EB499ACE1CF",
+          "serviceUuid": "0000fe8d-0000-1000-8000-00805f9b34fb",
+          "characteristicUuid": "273e0009-4c4d-454d-96be-f03bac821358",
+          "value": [0, 0, 0, 0]
+        }
+      ],
+      "value": []
+    },
+    {
+      "uuid": "273e000a-4c4d-454d-96be-f03bac821358",
+      "deviceId": "8BB08D8B-2443-7203-24A3-7EB499ACE1CF",
+      "serviceUuid": "0000fe8d-0000-1000-8000-00805f9b34fb",
+      "secondaryServiceUuid": null,
+      "properties": {
+        "broadcast": false,
+        "read": false,
+        "writeWithoutResponse": false,
+        "write": false,
+        "notify": true,
+        "indicate": false,
+        "authenticatedSignedWrites": false,
+        "extendedProperties": false,
+        "notifyEncryptionRequired": false,
+        "indicateEncryptionRequired": false
+      },
+      "descriptors": [
+        {
+          "uuid": "00002902-0000-1000-8000-00805f9b34fb",
+          "deviceId": "8BB08D8B-2443-7203-24A3-7EB499ACE1CF",
+          "serviceUuid": "0000fe8d-0000-1000-8000-00805f9b34fb",
+          "characteristicUuid": "273e000a-4c4d-454d-96be-f03bac821358",
+          "value": [0, 0, 0, 0]
+        }
+      ],
+      "value": []
+    }
+  ],
+  "includedServices": []
+}

@@ -1,8 +1,13 @@
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
+
 import '../widgets/appbar.dart';
 import '../widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 
-import '../models/database_helper.dart'; // Corrected import statement
+import '../models/database_helper.dart';
+import './graphe_page.dart'; // Corrected import statement
 
 class DonnesScreen extends StatefulWidget {
   @override
@@ -37,6 +42,28 @@ class DonnesScreenState extends State<DonnesScreen> {
                         fontSize: 14,
                       ),
                     ),
+
+                    InkWell(
+                      onTap: () async {
+                        // Lire les données depuis le fichier texte
+                        String data =
+                            await readDataFromFile('votre_fichier.txt');
+
+                        // Naviguer vers la page des graphes avec les données lues
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => GraphPage()),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        child: const Icon(
+                          Icons.download,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+
                     const SizedBox(height: 8), // Add spacing
 
                     // Updated container structure
@@ -55,7 +82,7 @@ class DonnesScreenState extends State<DonnesScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Expanded(
+                              Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -115,5 +142,22 @@ class DonnesScreenState extends State<DonnesScreen> {
         ),
       ),
     );
+  }
+}
+
+Future<String> readDataFromFile(String fileName) async {
+  try {
+    // Obtenez le répertoire d'application
+    Directory directory = await getApplicationDocumentsDirectory();
+    // String filePath = '${directory.path}/$fileName';
+    String filePath = '../utils/svm_model_test.txt';
+    // Lire le contenu du fichier
+    File file = File(filePath);
+    String data = await file.readAsString();
+
+    return data;
+  } catch (e) {
+    print('Erreur lors de la lecture du fichier : $e');
+    return '';
   }
 }
