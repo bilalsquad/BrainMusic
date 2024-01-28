@@ -168,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       buttonTextColor: const Color(0xFF381E72),
                     ),
                   ),
-                  const SizedBox(height: 173),
+                  const SizedBox(height: 150),
                   GestureDetector(
                     onTap: () {
                       Navigator.pop(context);

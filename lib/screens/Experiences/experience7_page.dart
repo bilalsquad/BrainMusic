@@ -46,10 +46,11 @@ class ExperiencePage7 extends StatelessWidget {
                 int? id = await getSavedUserId();
                 int? num =
                     await databaseHelper.getSessionNumeroWithHighestValue(id!);
-                if (num == null)
+                if (num == null) {
                   await DatabaseHelper().insertSessionData(1, id);
-
-                await DatabaseHelper().insertSessionData(num! + 1, id);
+                } else {
+                  await DatabaseHelper().insertSessionData(num + 1, id);
+                }
                 await DatabaseHelper().checkAndPrintSessionsTable();
                 Navigator.push(
                   context,
