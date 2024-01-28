@@ -31,7 +31,7 @@ class ExperiencePage7 extends StatelessWidget {
           ),
           Container(
             width: 250,
-            height: 75,
+            height: 70,
             child: GenericButton(
               buttonText: 'Terminer l’expérience ',
               onPressed: () async {
