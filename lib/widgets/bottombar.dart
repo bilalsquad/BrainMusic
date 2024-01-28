@@ -45,7 +45,7 @@ class BottomNavBar extends StatelessWidget {
         } else if (index == 1) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => DonnesScreen()),
+            MaterialPageRoute(builder: (context) => DonnesScreenState()),
           );
         } else if (index == 2) {
           Navigator.pushReplacement(

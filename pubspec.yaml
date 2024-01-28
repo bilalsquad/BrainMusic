@@ -37,7 +37,7 @@ dependencies:
   shared_preferences: ^2.0.10
   share: ^2.0.4
   sqflite_common_ffi_web: ^0.3.5+1
-  path_provider: ^2.0.10 # Utilisez la dernière version disponible
+  path_provider: ^2.0.15 # Utilisez la dernière version disponible
   app_settings: ^5.1.1
   audioplayers: ^4.1.0
   flutter_blue: ^0.8.0

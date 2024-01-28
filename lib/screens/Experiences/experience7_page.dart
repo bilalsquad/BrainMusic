@@ -1,5 +1,7 @@
-// ... Autres importations
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sqflite/sqflite.dart';
 
+import '../../models/database_helper.dart';
 import '../../widgets/Bouton.dart';
 import '../../widgets/appbar.dart';
 
@@ -17,6 +19,7 @@ class ExperiencePage7 extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const Text(
             'Bravo vous avez complété l’expérience !',
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Roboto',
               fontWeight: FontWeight.w400,
@@ -27,11 +30,27 @@ class ExperiencePage7 extends StatelessWidget {
             height: 95,
           ),
           Container(
-            width: 185,
-            height: 40,
+            width: 250,
+            height: 75,
             child: GenericButton(
               buttonText: 'Terminer l’expérience ',
-              onPressed: () {
+              onPressed: () async {
+                DatabaseHelper databaseHelper = DatabaseHelper();
+
+                Future<int?> getSavedUserId() async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  return prefs.getInt('userId');
+                }
+
+                int? id = await getSavedUserId();
+                int? num =
+                    await databaseHelper.getSessionNumeroWithHighestValue(id!);
+                if (num == null)
+                  await DatabaseHelper().insertSessionData(1, id);
+
+                await DatabaseHelper().insertSessionData(num! + 1, id);
+                await DatabaseHelper().checkAndPrintSessionsTable();
                 Navigator.push(
                   context,
                   MaterialPageRoute(

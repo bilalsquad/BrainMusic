@@ -15,8 +15,8 @@ Future<String> getDatabasePath() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // String databasePath = await getDatabasePath();
-  // String path = join(databasePath, 'brainmusic.db');
+  String databasePath = await getDatabasePath();
+  String path = join(databasePath, 'brainmusic.db');
 
   // Configure the database factory based on the platform
   if (kIsWeb) {
