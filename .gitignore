@@ -9,6 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
+video.MP4
 
 # IntelliJ related
 *.iml

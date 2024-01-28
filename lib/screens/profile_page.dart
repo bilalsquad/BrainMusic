@@ -20,11 +20,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(
-                horizontal: 16), // ou EdgeInsets.all(0.0)
+                horizontal: 16, vertical: 30), // ou EdgeInsets.all(0.0)
 
             child: Center(
               child: Column(

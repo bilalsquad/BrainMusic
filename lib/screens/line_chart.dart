@@ -25,7 +25,7 @@ class _LineChartSample10State extends State<LineChartSample10> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+    timer = Timer.periodic(const Duration(milliseconds: 40), (timer) {
       setState(() {
         gammaSpots.add(FlSpot(xValue, generateRandomValue()));
         betaSpots.add(FlSpot(xValue, generateRandomValue2()));
@@ -109,86 +109,89 @@ class _LineChartSample10State extends State<LineChartSample10> {
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            for (var i = 0; i < colorsList.length; i++)
-              Container(
-                width: screenWidth - 50,
-                height: 450,
-                margin: EdgeInsets.only(
-                  bottom: 20,
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        titlesList[i],
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    AspectRatio(
-                      aspectRatio: 1.5,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 24.0),
-                        child: LineChart(
-                          LineChartData(
-                            minY: axisRanges[i]['minY']!,
-                            maxY: axisRanges[i]['maxY']!,
-                            minX: 0,
-                            maxX: 25,
-                            lineTouchData: LineTouchData(enabled: false),
-                            clipData: FlClipData.all(),
-                            gridData: FlGridData(
-                              show: true,
-                              drawVerticalLine: false,
-                              drawHorizontalLine:
-                                  false, // Désactive les lignes horizontales
-                            ),
-                            borderData: FlBorderData(show: false),
-                            axisTitleData: FlAxisTitleData(
-                              leftTitle: AxisTitle(
-                                titleText: 'Fréquence (Hz)',
-                                showTitle: true,
-                              ),
-                              bottomTitle: AxisTitle(
-                                titleText: 'Temps (s)',
-                                showTitle: true,
-                              ),
-                            ),
-                            titlesData: FlTitlesData(
-                              show: true,
-                              leftTitles: SideTitles(
-                                showTitles: true,
-                                getTitles: (value) {
-                                  return '$value'; // Ajoutez "Hz" à la fin de la valeur pour l'axe des ordonnées
-                                },
-                                reservedSize: 50,
-                              ),
-                              bottomTitles: SideTitles(
-                                showTitles: true,
-                                getTitles: (value) {
-                                  return '$value'; // Ajoutez "s" à la fin de la valeur pour l'axe des abscisses
-                                },
-                                reservedSize: 50,
-                              ),
-                              rightTitles: SideTitles(showTitles: false),
-                              topTitles: SideTitles(showTitles: false),
-                            ),
-                            lineBarsData: [
-                              lineBar(getDataForIndex(i), colorsList[i]),
-                            ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          child: Column(
+            children: [
+              for (var i = 0; i < colorsList.length; i++)
+                Container(
+                  width: screenWidth - 50,
+                  height: 450,
+                  margin: EdgeInsets.only(
+                    bottom: 20,
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          titlesList[i],
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      AspectRatio(
+                        aspectRatio: 1.5,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 24.0),
+                          child: LineChart(
+                            LineChartData(
+                              minY: axisRanges[i]['minY']!,
+                              maxY: axisRanges[i]['maxY']!,
+                              minX: 0,
+                              maxX: 25,
+                              lineTouchData: LineTouchData(enabled: false),
+                              clipData: FlClipData.all(),
+                              gridData: FlGridData(
+                                show: true,
+                                drawVerticalLine: false,
+                                drawHorizontalLine:
+                                    false, // Désactive les lignes horizontales
+                              ),
+                              borderData: FlBorderData(show: false),
+                              axisTitleData: FlAxisTitleData(
+                                leftTitle: AxisTitle(
+                                  titleText: 'Fréquence (Hz)',
+                                  showTitle: true,
+                                ),
+                                bottomTitle: AxisTitle(
+                                  titleText: 'Temps (s)',
+                                  showTitle: true,
+                                ),
+                              ),
+                              titlesData: FlTitlesData(
+                                show: true,
+                                leftTitles: SideTitles(
+                                  showTitles: true,
+                                  getTitles: (value) {
+                                    return '$value'; // Ajoutez "Hz" à la fin de la valeur pour l'axe des ordonnées
+                                  },
+                                  reservedSize: 50,
+                                ),
+                                bottomTitles: SideTitles(
+                                  showTitles: true,
+                                  getTitles: (value) {
+                                    return '$value'; // Ajoutez "s" à la fin de la valeur pour l'axe des abscisses
+                                  },
+                                  reservedSize: 50,
+                                ),
+                                rightTitles: SideTitles(showTitles: false),
+                                topTitles: SideTitles(showTitles: false),
+                              ),
+                              lineBarsData: [
+                                lineBar(getDataForIndex(i), colorsList[i]),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );
