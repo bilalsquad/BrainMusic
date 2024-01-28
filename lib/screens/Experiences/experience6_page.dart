@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/services.dart';
 import 'package:musicbrainflutter/services/muse_listener.dart';
+import '../../interfaces/muse_interface.dart';
 
 import '../../widgets/appbar.dart';
 import 'experience7_page.dart';
+import 'package:flutter/services.dart';
 
 class ExperiencePage6 extends StatefulWidget {
   const ExperiencePage6({Key? key}) : super(key: key);
@@ -28,6 +29,11 @@ class _ExperiencePage6State extends State<ExperiencePage6>
 
   final MuseConnectionManager museManager = MuseConnectionManager();
 
+  final MuseInterface museInterface =
+      MuseInterface(); // Instance de MuseInterface
+
+  final MethodChannel _channel = const MethodChannel('com.example.muse_sdk');
+
   @override
   void initState() {
     super.initState();
@@ -36,6 +42,17 @@ class _ExperiencePage6State extends State<ExperiencePage6>
     _startTimer();
     WidgetsBinding.instance?.addObserver(this);
     museManager.discoverServices();
+    _initializeEEGDataListener();
+  }
+
+  _initializeEEGDataListener() {
+    _channel.setMethodCallHandler((call) async {
+      print("test");
+      if (call.method == 'onEEGDataReceived') {
+        final List<double> eegData = call.arguments.cast<double>();
+        print('Données EEG reçues : $eegData');
+      }
+    });
   }
 
   void _initializeAudioPlayer() {

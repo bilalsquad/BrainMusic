@@ -64,8 +64,3 @@ flutter:
   assets:
     - assets/
     - assets/BrainMusiqueExp.mp3
-  plugin:
-    platforms:
-      android:
-        package: com.exemple.sdkmusejava
-        pluginClass: SdkMuseJavaPlugin

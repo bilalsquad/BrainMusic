@@ -28,3 +28,12 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // ... d'autres dépendances ...
+
+    // Assurez-vous que le chemin du répertoire est correct
+    implementation project(':muse_sdk')
+}

@@ -63,4 +63,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation project(':muse_sdk')
+}

@@ -24,7 +24,9 @@ class MuseConnectionManager {
     FlutterBlue.instance.startScan(timeout: Duration(seconds: 10));
 
     FlutterBlue.instance.scanResults.listen((results) {
+      print(results);
       for (ScanResult result in results) {
+        print(result.device.id.toString());
         if (result.device.id.toString() == targetDeviceId) {
           FlutterBlue.instance.stopScan();
           museDevice = result.device;
@@ -54,8 +56,6 @@ class MuseConnectionManager {
     if (museDevice != null) {
       List<BluetoothService> services = await museDevice!.discoverServices();
       for (var service in services) {
-        print(service);
-        print("\n");
         for (var characteristic in service.characteristics) {
           // Ici, vous pouvez traiter chaque caractéristique
           print(characteristic.uuid.toString());
