@@ -25,7 +25,7 @@ class _ExperiencePage2State extends State<ExperiencePage2> {
         selectDate == true &&
         selectCountry == true) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const ExperiencePage7()));
+          MaterialPageRoute(builder: (context) => const ExperiencePage3()));
     } else {
       // Afficher un SnackBar ou un dialogue
       ScaffoldMessenger.of(context).showSnackBar(

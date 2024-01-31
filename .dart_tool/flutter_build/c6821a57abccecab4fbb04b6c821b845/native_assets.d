@@ -1,0 +1,1 @@
+ /Users/bilalbarar/Documents/Cours/Polytech_5A/PFE/BrainMusic/.dart_tool/flutter_build/c6821a57abccecab4fbb04b6c821b845/native_assets.yaml: 
